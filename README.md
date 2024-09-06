@@ -56,7 +56,4 @@ Connor Simms\
 Colin Jones\
 David Garcia Grajales
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
 
