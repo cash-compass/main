@@ -15,8 +15,9 @@ An in-depth paragraph about your project and overview of use.
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Please download the main file located in the respository
+* From there you will run these files through an coding launcher (Recommended is Visual Studio)
+* You will need to use C to run the files and edit them as well
 
 ### Executing program
 
