@@ -4,7 +4,8 @@ Take control of your finances with CashCompass. Our AI-driven app simplifies mon
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This project will run through a website using the link provided (link added in future), all code will provided in the respositiory.
+Any code edited or added won't be fully implemented automatically, it will have to be fully commited to the main branch first.
 
 ## Key Features
  * Intelligent Expense Tracking:
