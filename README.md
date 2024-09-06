@@ -6,6 +6,16 @@ Take control of your finances with CashCompass. Our AI-driven app simplifies mon
 
 An in-depth paragraph about your project and overview of use.
 
+## Key Features
+ * Intelligent Expense Tracking:
+    * Effortlessly record your spending and watch CashCompass categorize your transactions for a clear financial overview.
+* Personalized Financial Insights:
+    * Get tailored recommendations and tips from your AI financial guru to improve your spending habits and reach your financial goals.
+* Visualize Your Spending:
+    * Understand your spending patterns with intuitive charts and graphs that highlight key trends.
+* Set Budgets and Track Progress:
+    *  Create personalized budgets and track your spending against them to stay on top of your finances.
+
 ## Getting Started
 
 ### Dependencies
