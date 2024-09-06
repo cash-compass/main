@@ -1,6 +1,6 @@
 # cashcompass
 ben
 colin
-jinay
+Jinay Patel
 Ben t
 connor
