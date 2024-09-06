@@ -21,8 +21,9 @@ Any code edited or added won't be fully implemented automatically, it will have 
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing the program.
-* ex. Windows 10
+* A code running software (Ex. Visual Studio)
+* Lastest Windows or MacOs
+* C installed to your operating system
 
 ### Installing
 
