@@ -1,6 +1,6 @@
 # CashCompass
 
-Cash compass is an easy to use financial tracker app targeted at anyone who wants to improve their general budgeting skills.
+Take control of your finances with CashCompass. Our AI-driven app simplifies money management by effortlessly tracking your daily expenses and categorizing them automatically.
 
 ## Description
 
