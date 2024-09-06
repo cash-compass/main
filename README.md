@@ -1,6 +1,6 @@
 # CashCompass
 
-Simple overview of use/purpose.
+Cash compass is an easy to use financial tracker app targeted at anyone who wants to improve their general budgeting skills.
 
 ## Description
 
