@@ -37,13 +37,13 @@ command to run if the program contains helper info
 
 Contributors names and contact info
 
-Jinay Patel
-Ben Tirado
-Ben Steele
-Thomas Kaseca
-Connor Simms
-Colin Jones
-David Garcia Grajales
+* Jinay Patel
+* Ben Tirado
+* Ben Steele
+* Thomas Kaseca
+* Connor Simms
+* Colin Jones
+* David Garcia Grajales
 
 ex. Dominique Pizzie  
 ex. [@DomPizzie](https://twitter.com/dompizzie)
