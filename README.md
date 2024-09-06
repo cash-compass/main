@@ -43,7 +43,7 @@ Ben Steele\
 Thomas Kaseca\
 Connor Simms\
 Colin Jones\
-David Garcia Grajales\
+David Garcia Grajales
 
 ex. Dominique Pizzie  
 ex. [@DomPizzie](https://twitter.com/dompizzie)
