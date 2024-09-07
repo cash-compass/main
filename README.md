@@ -4,8 +4,9 @@ Take control of your finances with CashCompass. Our AI-driven app simplifies mon
 
 ## Description
 
-This project will run through a website using the link provided (link added in future), all code will provided in the respositiory.
-Any code edited or added won't be fully implemented automatically, it will have to be fully commited to the main branch first.
+CashCompasss is an in depth yet easy to use approach to a typical financial tracker app. We set ourselves apart from the competition with our implementation of AI,
+which will help with budgeting and future planning. We prioritize a straightforward user interface, to simplify the process of using the app.
+
 
 ## Key Features
  * Intelligent Expense Tracking:
@@ -33,17 +34,13 @@ Any code edited or added won't be fully implemented automatically, it will have 
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Download the program files from the git repository. 
+* Place all of the files in a folder and run the executeable.
 
 ## Help
 
-Any advise for common problems or issues.
 ```
-command to run if the program contains helper info
+This section will be updated as we encounter errors further down in development.
 ```
 
 ## Authors
