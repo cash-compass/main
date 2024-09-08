@@ -4,7 +4,7 @@ Take control of your finances with CashCompass. Our AI-driven app simplifies mon
 
 ## Description
 
-CashCompasss is an in depth yet easy to use approach to a typical financial tracker app. We set ourselves apart from the competition with our implementation of AI,
+CashCompass is an in depth yet easy to use approach to a typical financial tracker app. We set ourselves apart from the competition with our implementation of AI,
 which will help with budgeting and future planning. We prioritize a straightforward user interface, to simplify the process of using the app.
 
 
