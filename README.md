@@ -48,7 +48,7 @@ This section will be updated as we encounter errors further down in development.
 Contributors names and contact info
 
 Jinay Patel\
-Ben Tirado\
+Ben  Tirado\
 Ben Steele\
 Thomas Kaseca\
 Connor Simms\
