@@ -22,7 +22,7 @@ which will help with budgeting and future planning. We prioritize a straightforw
 
 ### Dependencies
 
-* A web browser capable of running javascript.
+* A web browser capable of running JavaScript.
 * An internet connection.
 
 ### Installing
