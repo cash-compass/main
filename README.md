@@ -28,7 +28,7 @@ which will help with budgeting and future planning. We prioritize a straightforw
 ### Installing
 
 * Please download the files located in the dispoitory.
-* From there you will run the html file and it will launch the program.
+* From there you will run the index.html file and it will launch the program.
 * You will need a stable browser to be able to acess the functions of the program.
 
 ### Executing program
