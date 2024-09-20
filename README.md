@@ -50,7 +50,7 @@ Contributors names and contact info
 Jinay Patel\
 Ben  Tirado\
 Ben Steele\
-Thomas Kaseca\
+Thomas  Kaseca\
 Connor Simms\
 Colin Jones\
 David Garcia Grajales
