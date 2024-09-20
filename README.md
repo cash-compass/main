@@ -50,8 +50,8 @@ Jinay Patel\
 Ben  Tirado\
 Ben Steele\
 Thomas Kaseca\
-Connor Simms\
 Colin Jones\
+Connor Simms\
 David Garcia Grajales
 
 
