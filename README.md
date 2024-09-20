@@ -22,15 +22,14 @@ which will help with budgeting and future planning. We prioritize a straightforw
 
 ### Dependencies
 
-* A code running software (Ex. Visual Studio)
-* Lastest Windows or MacOs
-* C installed to your operating system
+* A web browser capable of running javascript.
+* An internet connection.
 
 ### Installing
 
-* Please download the main file located in the respository
-* From there you will run these files through an coding launcher (Recommended is Visual Studio)
-* You will need to use C to run the files and edit them as well
+* Please download the files located in the dispoitory.
+* From there you will run the html file and it will launch the program.
+* You will need a stable browser to be able to acess the functions of the program.
 
 ### Executing program
 
