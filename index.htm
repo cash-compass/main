@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--THIS ADDS THE TITILE TO TOP TAB-->
+	<title>CashCompass</title>
+	
+	<! -- This links the Javascript file -->
+	<script type = "text/javascript" src="functions.js"></script>
+
+	<! -- This links the CSS file -->
+	<link rel="stylesheet" href="style.css">
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+<head>
+<body>
+	<div>
+	<h1 id="h1">Cash Compass Website</h1>
+
+	<p>Take control of your finances with CashCompass.
+		Our AI-driven app simplifies money management
+		by effortlessly tracking your daily expenses and
+		categorizing them automatically.
+	</p>
+	</div>
+
+	<!--Creates a data form for user input-->
+	<div class="container">
+		<form id="dataForm">
+			<!-- Input fields for data -->
+			<label for="percentage">Percentage:</label>
+			<input type="number" id="percentage" min="0" max="100" required>
+			<label for="income">Income:</label>
+			<input type="number" id="income" required>
+			<!-- Add Data button -->
+			<button type="button" onclick="addData()">Generate</button>
+		</form>
+		<!-- Canvas for the pie chart -->
+		<canvas id="pieChart" width="400" height="400"></canvas>
+	</div>
+
+	<!-- JavaScript File-->
+	<script src="user.js"></script>
+
+</body>
+
+</html>
