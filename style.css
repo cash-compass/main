@@ -3,11 +3,49 @@ color: blue;
 text-align: center;
 }
 
-/* This create the orange square example. */
-div {
-  width: 100px;
-  height: 100px;
-  background-color: orange;
-  margin: 10px;
-  border-radius: 10px;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  
 }
+
+.container {
+  text-align: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+/* button style */
+button {
+  background-color: #05869d;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* input styles*/
+input {
+  width: 20%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+canvas {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
