@@ -21,15 +21,29 @@ test_user.first_name = "Richard";
 test_user.last_name = "Johnson";
 // Array used to keep track of the expenses inputted by the user
 var expenses = [];
+// Array used to keep track of the income inputted by the user
+var income = [];
 
 //Function to get username
 function getName(user) {
     console.log(user.first_name + " " + user.last_name)
 
 }
-// going to be used for creating the user input for income
+// Function used for the income button
 function incomeButton() {
+    // creates a temp variable, that will store the user input into it
+    var temp = document.getElementById('income');
 
+    // This if statement will test to see if the user input isn't empty and actually holds data
+    // If true it will push he data to the income array
+    // If false then it will send an alert to the user input a data
+    if (temp.value.trim() != ""){
+        income.push(temp.value.trim());
+        income.value = '';
+    }
+    else {
+        alert("Value Field is Empty, Please Input!");
+    }
 }
 
 // Function used for the expenses button
@@ -40,9 +54,9 @@ function expendituresButton() {
     // This if statement will test to see if the user input isn't empty and actually holds data
     // If true it will push he data to the expenses array
     // If false then it will send an alert to the user input a data
-    if (temp.ariaValueMax.trim() !== ""){
-        expenses.push(temp.ariaValueMax.trim());
-        userInput.value = "";
+    if (temp.value.trim() != ""){
+        expenses.push(temp.value.trim());
+        expense.value = '';
     }
     else {
         alert("Value Field is Empty, Please Input!");
