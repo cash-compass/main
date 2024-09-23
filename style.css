@@ -15,10 +15,6 @@ body {
   
 }
 
-.container {
-  text-align: center;
-}
-
 /* Flexbox container for the buttons */
 .container {
   display: flex;
