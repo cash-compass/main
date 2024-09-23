@@ -28,19 +28,17 @@
 	</div>
 
 	<!--Creates a data form for user input-->
-	<div class="container">
+	<div class="button-container">
 		<form id="dataForm">
 			<!-- Input fields for data -->
 			<label for="percentage">Percentage:</label>
 			<input type="number" id="percentage" min="0" max="100" required>
 			<label for="income">Income:</label>
 			<input type="number" id="income" required>
+			<button onclick="incomeButton()">Submit</button>
 			<label for="expense">Expense:</label>
 			<input type="number" id="expense">
-			<div class="button-container">
-				<button onclick="incomeButton()">Submit</button>
-				<button onclick="expendituresButton()">Submit</button>
-			</div>
+			<button onclick="expendituresButton()">Submit</button>
 		</form>
 		<!-- Canvas for the pie chart -->
 		<canvas id="pieChart" width="400" height="400"></canvas>
