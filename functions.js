@@ -1,3 +1,5 @@
+const fs = reqire('fs');
+
 function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
 
@@ -16,19 +18,56 @@ function user(first_name, last_name, weekly_income, weekly_expense, current_inco
 //Here is how to create a new object and edit the variables.
 //In the future we will need to have a database of already made user information.
 //For now we will have to hard code it, so lets user this test_user to figure out the different functions and algorithms. :)
-test_user = new user();
-test_user.first_name = "Richard";
-test_user.last_name = "Johnson";
-// Array used to keep track of the expenses inputted by the user
-var expenses = [];
-// Array used to keep track of the income inputted by the user
-var income = [];
+current_user = new user();
+current_user.first_name = "Richard";
+current_user.last_name = "Johnson";
+
+
+function loadUser(filename, username, password) {
+    fs.readFile(filename, 'utf8', (err, data) => {
+        if(err) {
+            console.error("Error Reading File", err);
+            return;
+        }
+
+        const userData = JSON.parse(data);
+
+        userData = userData.find(user => user.username == username && user.password == password);
+
+        if (userData) {
+            const user = new user(
+                userData.first_name,
+                userData.last_name,
+                userData.weekly_income,
+                userData.weekly_expense,
+                userData.current_income,
+                userData.current_expense
+            );
+        }
+        else {
+            console.log("Invalid username or password.");
+        }
+    })
+}
 
 //Function to get username
 function getName(user) {
     console.log(user.first_name + " " + user.last_name)
 
 }
+// This function updates the current account by adding an income
+function addIncome(trans) {
+    current_user.current_income += trans;
+}
+// This function updates the current account by adding an expense
+function addExpense(trans) {
+    current_user.current_income -= trans;
+}
+
+// Array used to keep track of the expenses inputted by the user
+var expenses = [];
+// Array used to keep track of the income inputted by the user
+var income = [];
 // Function used for the income button
 function incomeButton() {
     // creates a temp variable, that will store the user input into it
@@ -72,12 +111,6 @@ function saveButton() {
 function budgetCalc() {
 
 }
-
-// used for taking all the data and storing into the user profile
-function dataAnaylzer() {
-
-}
-
 
 //This function updates the user's name when the page loads.
 //This is how you have to wrtie anything that you want to happen right away.
