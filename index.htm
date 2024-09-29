@@ -39,9 +39,21 @@
 			<label for="expense">Expense:</label>
 			<input type="number" id="expense">
 			<button onclick="expendituresButton()">Submit</button>
+			
+			<!--Categories drop down box-->
+			<label for="category">Categories:</label>
+			<select name="category" id="category" style="font-size: x-large;">
+				<option value="dash">----</option>
+				<option value="savings">Savings</option>
+				<option value="leisure">Leisure</option>
+				<option value="expenses">Expenses</option>
+				<option value="other">Other</option>
+
+			</select>
 		</form>
-		<!-- Canvas for the pie chart -->
-		<canvas id="pieChart" width="400" height="400"></canvas>
+		<!-- Canvas for the pie chart 1 and 2 -->
+		<canvas id="pieChart1" width="400" height="400"></canvas>
+		<canvas id="pieChart2" width="400" height="400"></canvas>
 	</div>
 
 	<!-- JavaScript File-->

@@ -56,6 +56,12 @@ button {
   font-size: 16px;
 }
 
+/* gives the drop down its features*/
+select{
+  width: 150px;
+  height: 40px;
+}
+
 /* Hover effect for the buttons */
 button:hover {
   background-color: #45a049;
