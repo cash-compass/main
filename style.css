@@ -4,6 +4,10 @@ text-align: center;
 }
 
 body {
+  background-image: url('Backgroundfinance1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
@@ -12,7 +16,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 99vh;
+  height: 100vh;
 }
 
 /* Flexbox container for the buttons */
