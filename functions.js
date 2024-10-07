@@ -1,3 +1,6 @@
+// allows us to read and write files
+const fs = require('fs');
+
 function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
 
@@ -20,11 +23,43 @@ current_user = new user();
 current_user.first_name = "Richard";
 current_user.last_name = "Johnson";
 
+// This function will take the inputted username and password given by the user and then see if it is within the database
+// If found in the database it will copy all the data to the user
+// If not found it will say user not found
+function login(username, password){
+    // First it reads in the file "users.txt" that contains the data base
+    // If fails it will return 
+    fs.readFile('users.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading the file:', err);
+            return;
+        }
+
+        // creates a const to be used for data splitting
+        const lines = data.split('\n');
+
+        // This will take all the information on a given line and split the data up by the char ','
+        // If the current line it is contains the correct username and password it will read in this data
+        // If that line doesn't contain it, then it will move to the next one
+        // If user can't be found it will tell the system who then tell the user
+        for (const line of lines) {
+
+            const [storedUsername, storedPassword] = line.split(',');
+
+            if (storedUsername === username && storedPassword === password) {
+                console.log('User found: ${storedUsername');
+                console.log('Password: ${storedPassword}');
+                return;
+            }
+        }
+
+        console.log('User not Found');
+    });
+}
 
 //Function to get username
 function getName(user) {
-    console.log(user.first_name + " " + user.last_name)
-
+    console.log(user.first_name + " " + user.last_name);
 }
 // This function updates the current account by adding an income
 function addIncome(trans) {
