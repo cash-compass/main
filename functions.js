@@ -1,6 +1,3 @@
-const fs = require('fs');
-const bcrypt = require('bcrypt');
-
 function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
 
@@ -22,50 +19,7 @@ function user(first_name, last_name, weekly_income, weekly_expense, current_inco
 current_user = new user();
 current_user.first_name = "Richard";
 current_user.last_name = "Johnson";
-let test = "colin2004";
-let test1 = "password123";
-let filename = "users.json";
-login(filename, test, test1);
 
-function login(filename, username, password) {
-    fs.readFile(filename, 'utf8', (err, data) => {
-        if(err) {
-            console.error("Error Reading File", err);
-            return;
-        }
-
-        const users = JSON.parse(data);
-
-        const userData = users.find(user => user.username == username && user.password == password);
-
-        if (userData) {
-            // Compare entered password with the stored hashed password
-            bcrypt.compare(password, userData.passwordHash, (err, isMatch) => {
-                if (err) {
-                    console.error("Error comparing passwords:", err);
-                    return;
-                }
-
-                if (isMatch) {
-                    // If password is correct, create a new User instance
-                    const user = new User(
-                        userData.first_name,
-                        userData.last_name,
-                        userData.weekly_income,
-                        userData.weekly_expense,
-                        userData.current_income,
-                        userData.current_expense
-                    );
-                    console.log("Login successful!", user);
-                } else {
-                    console.log("Invalid password.");
-                }
-            });
-        } else {
-            console.log("Invalid username.");
-        }
-    });
-}
 
 //Function to get username
 function getName(user) {
