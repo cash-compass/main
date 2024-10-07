@@ -49,6 +49,7 @@ function incomeButton() {
     // If false then it will send an alert to the user input a data
     if (temp.value.trim() != ""){
         income.push(temp.value.trim());
+        addIncome(temp.value.trim());
         income.value = '';
     }
     else {
@@ -66,6 +67,7 @@ function expendituresButton() {
     // If false then it will send an alert to the user input a data
     if (temp.value.trim() != ""){
         expenses.push(temp.value.trim());
+        addExpense(temp.value.trim());
         expense.value = '';
     }
     else {
