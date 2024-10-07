@@ -1,3 +1,6 @@
+// allows us to read and write files
+const fs = require('fs');
+
 function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
 
@@ -16,19 +19,61 @@ function user(first_name, last_name, weekly_income, weekly_expense, current_inco
 //Here is how to create a new object and edit the variables.
 //In the future we will need to have a database of already made user information.
 //For now we will have to hard code it, so lets user this test_user to figure out the different functions and algorithms. :)
-test_user = new user();
-test_user.first_name = "Richard";
-test_user.last_name = "Johnson";
+current_user = new user();
+current_user.first_name = "Richard";
+current_user.last_name = "Johnson";
+
+// This function will take the inputted username and password given by the user and then see if it is within the database
+// If found in the database it will copy all the data to the user
+// If not found it will say user not found
+function login(username, password){
+    // First it reads in the file "users.txt" that contains the data base
+    // If fails it will return 
+    fs.readFile('users.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading the file:', err);
+            return;
+        }
+
+        // creates a const to be used for data splitting
+        const lines = data.split('\n');
+
+        // This will take all the information on a given line and split the data up by the char ','
+        // If the current line it is contains the correct username and password it will read in this data
+        // If that line doesn't contain it, then it will move to the next one
+        // If user can't be found it will tell the system who then tell the user
+        for (const line of lines) {
+
+            const [storedUsername, storedPassword] = line.split(',');
+
+            if (storedUsername === username && storedPassword === password) {
+                console.log('User found: ${storedUsername');
+                console.log('Password: ${storedPassword}');
+                return;
+            }
+        }
+
+        console.log('User not Found');
+    });
+}
+
+//Function to get username
+function getName(user) {
+    console.log(user.first_name + " " + user.last_name);
+}
+// This function updates the current account by adding an income
+function addIncome(trans) {
+    current_user.current_income += trans;
+}
+// This function updates the current account by adding an expense
+function addExpense(trans) {
+    current_user.current_income -= trans;
+}
+
 // Array used to keep track of the expenses inputted by the user
 var expenses = [];
 // Array used to keep track of the income inputted by the user
 var income = [];
-
-//Function to get username
-function getName(user) {
-    console.log(user.first_name + " " + user.last_name)
-
-}
 // Function used for the income button
 function incomeButton() {
     // creates a temp variable, that will store the user input into it
@@ -39,6 +84,7 @@ function incomeButton() {
     // If false then it will send an alert to the user input a data
     if (temp.value.trim() != ""){
         income.push(temp.value.trim());
+        addIncome(temp.value.trim());
         income.value = '';
     }
     else {
@@ -56,6 +102,7 @@ function expendituresButton() {
     // If false then it will send an alert to the user input a data
     if (temp.value.trim() != ""){
         expenses.push(temp.value.trim());
+        addExpense(temp.value.trim());
         expense.value = '';
     }
     else {
@@ -72,12 +119,6 @@ function saveButton() {
 function budgetCalc() {
 
 }
-
-// used for taking all the data and storing into the user profile
-function dataAnaylzer() {
-
-}
-
 
 //This function updates the user's name when the page loads.
 //This is how you have to wrtie anything that you want to happen right away.
