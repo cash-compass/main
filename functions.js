@@ -19,6 +19,22 @@ function user(first_name, last_name, weekly_income, weekly_expense, current_inco
 
 currentUser = new user();
 
+// This function will create new users into the database
+// It take all the data inputted when creating a new user and add into the databse using the proper format
+// So that way we log in the user we make sure the data is called back in properly and not out of order
+function createUser(username, password, firstName, lastName, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
+    const userLine = '${username},${password},${firstName},${lastName},${weeklyIncome},${weeklyExpense},${currentIncome},${currentExpense}\n';
+
+    fs.appendFile('users.txt', userLine, (err) => {
+        if (err) {
+            console.error("error");
+        } 
+        else {
+            console.log("success");
+        }
+    });
+}
+
 // This function will take the inputted username and password given by the user and then see if it is within the database
 // If found in the database it will copy all the data to the user
 // If not found it will say user not found
