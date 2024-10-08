@@ -16,12 +16,8 @@ function user(first_name, last_name, weekly_income, weekly_expense, current_inco
     this.current_income = 0;
     this.current_expense = 0;
 }
-//Here is how to create a new object and edit the variables.
-//In the future we will need to have a database of already made user information.
-//For now we will have to hard code it, so lets user this test_user to figure out the different functions and algorithms. :)
-current_user = new user();
-current_user.first_name = "Richard";
-current_user.last_name = "Johnson";
+
+currentUser = new user();
 
 // This function will take the inputted username and password given by the user and then see if it is within the database
 // If found in the database it will copy all the data to the user
@@ -44,17 +40,37 @@ function login(username, password){
         // If user can't be found it will tell the system who then tell the user
         for (const line of lines) {
 
-            const [storedUsername, storedPassword] = line.split(',');
+            const [storedUsername, storedPassword, storedFirstName, storedLastName, storedWeeklyIncome, storedWeeklyExpense, storedCurrentIncome, storedCurrentExpense] = line.split(',');
 
             if (storedUsername === username && storedPassword === password) {
-                console.log('User found: ${storedUsername');
-                console.log('Password: ${storedPassword}');
+                currentUser.first_name = storedFirstName;
+                currentUser.last_name = storedLastName;
+                currentUser.weekly_income = storedWeeklyIncome;
+                currentUser.weekly_expense = storedWeeklyExpense;
+                currentUser.current_income = storedCurrentIncome;
+                currentUser.current_expense = storedCurrentExpense;
                 return;
             }
         }
 
         console.log('User not Found');
     });
+}
+
+function saveUser() {
+
+}
+
+// This function will first call the saveUser function to make sure that all the user data is saved into the system
+// Once saved into the system it will result all the currentUser values to zero until another user logins
+function logout() {
+    saveUser();
+    currentUser.first_name = 0;
+    currentUser.last_name = 0;
+    currentUser.weekly_income = 0;
+    currentUser.weekly_expense = 0;
+    currentUser.current_income = 0;
+    currentUser.current_expense = 0;
 }
 
 //Function to get username
