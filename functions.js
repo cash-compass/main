@@ -33,33 +33,53 @@ function getName(user) {
 function incomeButton() {
     // creates a temp variable, that will store the user input into it
     var temp = document.getElementById('income');
-
+    //Grabs the information from the dropdown menu.
+    var dropdown = document.getElementById("category");
+    var dropValue = dropdown.value;
     // This if statement will test to see if the user input isn't empty and actually holds data
     // If true it will push he data to the income array
     // If false then it will send an alert to the user input a data
     if (temp.value.trim() != ""){
-        income.push(temp.value.trim());
-        income.value = '';
+        //Creating the new objects for each income inflow. This gets pushed to the income array, which is an array    made entirely of income objects.
+        income.push({
+          //Converts the string input into an interger.
+          value: parseInt(temp.value.trim()),
+          cat: dropValue,
+        })
     }
     else {
         alert("Value Field is Empty, Please Input!");
     }
+   //Sends the values of the income array into the test output on the HTML file.
+  /* const test =  document.getElementById('testOutput').innerHTML; 
+    for (let i = 0; i < income.length; i++) {
+      document.getElementById('testOutput').innerHTML = test + " " + income[i].value + income[i].cat + ", ";
+    }*/
 }
 
 // Function used for the expenses button
 function expendituresButton() {
     // creates a temp variable, that will store the user input into it
     var temp = document.getElementById('expense');
-
+    //Grabs the information from the dropdown menu.
+    var dropdown = document.getElementById("category");
+    var dropValue = dropdown.value;
     // This if statement will test to see if the user input isn't empty and actually holds data
     // If true it will push he data to the expenses array
     // If false then it will send an alert to the user input a data
     if (temp.value.trim() != ""){
-        expenses.push(temp.value.trim());
-        expense.value = '';
+          expenses.push({
+          //Converts the string input into an interger.
+          value: parseInt(temp.value.trim()),
+          cat: dropValue,
+        })
     }
     else {
         alert("Value Field is Empty, Please Input!");
+    }
+    const test =  document.getElementById('testOutput').innerHTML; 
+    for (let i = 0; i < expenses.length; i++) {
+      document.getElementById('testOutput').innerHTML = test + " " + expenses[i].value + expenses[i].cat + ", ";
     }
 }
 
@@ -82,5 +102,6 @@ function dataAnaylzer() {
 //This function updates the user's name when the page loads.
 //This is how you have to wrtie anything that you want to happen right away.
 window.onload = function() {
+
    document.getElementById('username_html').innerHTML = test_user.first_name + " " + test_user.last_name;
 };
