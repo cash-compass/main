@@ -16,16 +16,6 @@ function user(first_name, last_name, weekly_income, weekly_expense, current_inco
     this.current_income = 0;
     this.current_expense = 0;
 }
-//Here is how to create a new object and edit the variables.
-//In the future we will need to have a database of already made user information.
-//For now we will have to hard code it, so lets user this test_user to figure out the different functions and algorithms. :)
-test_user = new user();
-test_user.first_name = "Richard";
-test_user.last_name = "Johnson";
-// Array used to keep track of the expenses inputted by the user
-var expenses = [];
-// Array used to keep track of the income inputted by the user
-var income = [];
 
 currentUser = new user();
 
@@ -101,8 +91,6 @@ function logout() {
 
 //Function to get username
 function getName(user) {
-    console.log(user.first_name + " " + user.last_name)
-
     console.log(user.first_name + " " + user.last_name);
 }
 // This function updates the current account by adding an income
@@ -129,15 +117,18 @@ function incomeButton() {
     // If true it will push he data to the income array
     // If false then it will send an alert to the user input a data
     if (temp.value.trim() != ""){
+<<<<<<< HEAD
         //Creating the new objects for each income inflow. This gets pushed to the income array, which is an array    made entirely of income objects.
         income.push({
           //Converts the string input into an interger.
           value: parseInt(temp.value.trim()),
           cat: dropValue,
         })
+=======
         income.push(temp.value.trim());
         addIncome(temp.value.trim());
         income.value = '';
+>>>>>>> main
     }
     else {
         alert("Value Field is Empty, Please Input!");
@@ -160,6 +151,7 @@ function expendituresButton() {
     // If true it will push he data to the expenses array
     // If false then it will send an alert to the user input a data
     if (temp.value.trim() != ""){
+<<<<<<< HEAD
           expenses.push({
           //Converts the string input into an interger.
           value: parseInt(temp.value.trim()),
@@ -189,12 +181,6 @@ function saveButton() {
 function budgetCalc() {
 
 }
-
-// used for taking all the data and storing into the user profile
-function dataAnaylzer() {
-
-}
-
 
 //This function updates the user's name when the page loads.
 //This is how you have to wrtie anything that you want to happen right away.
