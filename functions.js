@@ -1,3 +1,6 @@
+// allows us to read and write files
+const fs = require('fs');
+
 function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
 
@@ -24,11 +27,97 @@ var expenses = [];
 // Array used to keep track of the income inputted by the user
 var income = [];
 
+currentUser = new user();
+
+// This function will create new users into the database
+// It take all the data inputted when creating a new user and add into the databse using the proper format
+// So that way we log in the user we make sure the data is called back in properly and not out of order
+function createUser(username, password, firstName, lastName, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
+    const userLine = '${username},${password},${firstName},${lastName},${weeklyIncome},${weeklyExpense},${currentIncome},${currentExpense}\n';
+
+    fs.appendFile('users.txt', userLine, (err) => {
+        if (err) {
+            console.error("error");
+        } 
+        else {
+            console.log("success");
+        }
+    });
+}
+
+// This function will take the inputted username and password given by the user and then see if it is within the database
+// If found in the database it will copy all the data to the user
+// If not found it will say user not found
+function login(username, password){
+    // First it reads in the file "users.txt" that contains the data base
+    // If fails it will return 
+    fs.readFile('users.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading the file:', err);
+            return;
+        }
+
+        // creates a const to be used for data splitting
+        const lines = data.split('\n');
+
+        // This will take all the information on a given line and split the data up by the char ','
+        // If the current line it is contains the correct username and password it will read in this data
+        // If that line doesn't contain it, then it will move to the next one
+        // If user can't be found it will tell the system who then tell the user
+        for (const line of lines) {
+
+            const [storedUsername, storedPassword, storedFirstName, storedLastName, storedWeeklyIncome, storedWeeklyExpense, storedCurrentIncome, storedCurrentExpense] = line.split(',');
+
+            if (storedUsername === username && storedPassword === password) {
+                currentUser.first_name = storedFirstName;
+                currentUser.last_name = storedLastName;
+                currentUser.weekly_income = storedWeeklyIncome;
+                currentUser.weekly_expense = storedWeeklyExpense;
+                currentUser.current_income = storedCurrentIncome;
+                currentUser.current_expense = storedCurrentExpense;
+                return;
+            }
+        }
+
+        console.log('User not Found');
+    });
+}
+
+function saveUser() {
+
+}
+
+// This function will first call the saveUser function to make sure that all the user data is saved into the system
+// Once saved into the system it will result all the currentUser values to zero until another user logins
+function logout() {
+    saveUser();
+    currentUser.first_name = 0;
+    currentUser.last_name = 0;
+    currentUser.weekly_income = 0;
+    currentUser.weekly_expense = 0;
+    currentUser.current_income = 0;
+    currentUser.current_expense = 0;
+}
+
 //Function to get username
 function getName(user) {
     console.log(user.first_name + " " + user.last_name)
 
+    console.log(user.first_name + " " + user.last_name);
 }
+// This function updates the current account by adding an income
+function addIncome(trans) {
+    current_user.current_income += trans;
+}
+// This function updates the current account by adding an expense
+function addExpense(trans) {
+    current_user.current_income -= trans;
+}
+
+// Array used to keep track of the expenses inputted by the user
+var expenses = [];
+// Array used to keep track of the income inputted by the user
+var income = [];
 // Function used for the income button
 function incomeButton() {
     // creates a temp variable, that will store the user input into it
@@ -46,6 +135,9 @@ function incomeButton() {
           value: parseInt(temp.value.trim()),
           cat: dropValue,
         })
+        income.push(temp.value.trim());
+        addIncome(temp.value.trim());
+        income.value = '';
     }
     else {
         alert("Value Field is Empty, Please Input!");
@@ -73,6 +165,11 @@ function expendituresButton() {
           value: parseInt(temp.value.trim()),
           cat: dropValue,
         })
+=======
+        expenses.push(temp.value.trim());
+        addExpense(temp.value.trim());
+        expense.value = '';
+>>>>>>> main
     }
     else {
         alert("Value Field is Empty, Please Input!");
