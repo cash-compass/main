@@ -23,7 +23,7 @@ currentUser = new user();
 // It take all the data inputted when creating a new user and add into the databse using the proper format
 // So that way we log in the user we make sure the data is called back in properly and not out of order
 function createUser(username, password, firstName, lastName, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
-    const userLine = '${username},${password},${firstName},${lastName},${weeklyIncome},${weeklyExpense},${currentIncome},${currentExpense}\n';
+    const userLine = `${username},${password},${firstName},${lastName},${weeklyIncome},${weeklyExpense},${currentIncome},${currentExpense}\n`;
 
     fs.appendFile('users.txt', userLine, (err) => {
         if (err) {
@@ -35,6 +35,7 @@ function createUser(username, password, firstName, lastName, weeklyIncome, weekl
     });
 }
 
+createUser('colin2004', 'melonballer74', 'colin', 'jones', 0, 10, 100, 15);
 // This function will take the inputted username and password given by the user and then see if it is within the database
 // If found in the database it will copy all the data to the user
 // If not found it will say user not found
@@ -76,6 +77,9 @@ function login(username, password){
 function saveUser() {
 
 }
+
+login('colin2004', 'melonballer74');
+console.log(currentUser.weeklyExpense);
 
 // This function will first call the saveUser function to make sure that all the user data is saved into the system
 // Once saved into the system it will result all the currentUser values to zero until another user logins
@@ -154,6 +158,6 @@ function budgetCalc() {
 
 //This function updates the user's name when the page loads.
 //This is how you have to wrtie anything that you want to happen right away.
-window.onload = function() {
-   document.getElementById('username_html').innerHTML = test_user.first_name + " " + test_user.last_name;
-};
+//window.onload = function() {
+//   document.getElementById('username_html').innerHTML = test_user.first_name + " " + test_user.last_name;
+//};
