@@ -23,7 +23,32 @@ currentUser = new user();
 // It take all the data inputted when creating a new user and add into the databse using the proper format
 // So that way we log in the user we make sure the data is called back in properly and not out of order
 function createUser(username, password, firstName, lastName, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
-    const userLine = '${username},${password},${firstName},${lastName},${weeklyIncome},${weeklyExpense},${currentIncome},${currentExpense}\n';
+    const filePath = 'users.txt';
+
+    let fileContent;
+    try {
+        fileContent = fs.readFileSync(filePath, 'utf8');
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            console.log("File not found")
+            fileContent = "";
+        }
+        else {
+            console.error("Error reading file: ", err);
+            return;
+        }
+    }
+
+    const users = fileContent.split('\n').filter(Boolean);
+    for (let user of users) {
+        const userFields = user.split(',');
+        if (userFields[0] === username) {
+            console.log("Error: Username already exists");
+            return;
+        }
+    }
+    
+    const userLine = `${username},${password},${firstName},${lastName},${weeklyIncome},${weeklyExpense},${currentIncome},${currentExpense}\n`;
 
     fs.appendFile('users.txt', userLine, (err) => {
         if (err) {
@@ -34,7 +59,6 @@ function createUser(username, password, firstName, lastName, weeklyIncome, weekl
         }
     });
 }
-
 // This function will take the inputted username and password given by the user and then see if it is within the database
 // If found in the database it will copy all the data to the user
 // If not found it will say user not found
@@ -73,8 +97,43 @@ function login(username, password){
     });
 }
 
-function saveUser() {
+function saveUser(username, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
+    const filePath = 'users.txt'
 
+    let fileContent;
+    try {
+        fileContent = fs.readFileSync(filePath, 'utf8');
+    } catch (err) {
+        console.error("Error reading file: ", err);
+        return;
+    }
+
+    const users = fileContent.split('\n').filter(Boolean);
+
+    const updatedUsers = users.map(user => {
+        const userFields = user.split(',');
+
+        if (userFields[0] === username) {
+            console.log(`Updating user: ${username}`);
+
+            userFields[4] = weeklyIncome;
+            userFields[5] = weeklyExpense;
+            userFields[6] = currentIncome;
+            userFields[7] = currentExpense;
+        }
+        return userFields.join(',');
+    });
+
+    const newFileContent = updatedUsers.join('\n');
+
+    fs.writeFile(filePath, newFileContent, (err) => {
+        if (err) {
+            console.error("Error writing to file:", err);
+        }
+        else {
+            console.log("Success: User updated!");
+        }
+    });
 }
 
 // This function will first call the saveUser function to make sure that all the user data is saved into the system
@@ -154,6 +213,6 @@ function budgetCalc() {
 
 //This function updates the user's name when the page loads.
 //This is how you have to wrtie anything that you want to happen right away.
-window.onload = function() {
-   document.getElementById('username_html').innerHTML = test_user.first_name + " " + test_user.last_name;
-};
+//window.onload = function() {
+//   document.getElementById('username_html').innerHTML = test_user.first_name + " " + test_user.last_name;
+//};
