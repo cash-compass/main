@@ -74,7 +74,7 @@ function dataAnaylzer() {
 }
 
 //Function to output the weekly summary and refresh data.
-function weekSummary(user, date) {
+function weekSummary(user, date, week) {
     //Add in function to save user data here.
     saveButton();
     console.log("Summary;");
@@ -85,7 +85,7 @@ function weekSummary(user, date) {
     user.current_expense = 0;
     user.current_income = 0;
     day = 1;
-    weeklyCharges(user, day);
+    weeklyCharges(user, day, week);
 }
 
 //Fuction to be called on day 1 to add weekly expenses
@@ -96,7 +96,7 @@ function weeklyCharges(user, date, week) {
         return 1;
     }
     else if (date == 8) {
-        weekSummary(user, date);
+        weekSummary(user, date, week);
     }
     else {
         return 0;
@@ -185,7 +185,7 @@ console.log('');
 
 //Day 1
 console.log("Day 1");
-day = 1;
+day += 1;
 week = 2;
 weeklyCharges(current_user, day, week);
 console.log('');
