@@ -1,83 +1,108 @@
-h1 {
-color: blue;
-text-align: center;
+/* Modern, clean design */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-image: url('Backgroundfinance1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #333;
   display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header styles */
+header {
+  text-align: center;
+  margin: 20px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #05869d;
+}
+
+.intro {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+/* Form section styling */
+.form-section {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
-  
-}
-
-/* Flexbox container for the buttons */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-/* Flexbox for the form elements */
-#dataForm {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  max-width: 300px;
-  width: 100%;
-}
-
-/* Flexbox for buttons */
-.button-container {
-  display: flex;
-  gap: 10px;
 }
 
 form {
-  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  margin: 20px 0;
 }
 
-/* button style */
-button {
+.form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #05869d;
+  outline: none;
+}
+
+/* Button styling */
+button.submit-button {
   background-color: #05869d;
-  border: none;
   color: white;
-  padding: 10px 30px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* gives the drop down its features*/
-select{
-  width: 150px;
-  height: 40px;
-}
-
-/* Hover effect for the buttons */
-button:hover {
+button.submit-button:hover {
   background-color: #45a049;
 }
 
-/* input styles*/
-input {
-  width: 20%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
 canvas {
+  margin-top: 20px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  body {
+      padding: 0 10px;
+  }
+
+  form {
+      max-width: 100%;
+  }
+}
