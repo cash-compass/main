@@ -52,6 +52,6 @@ Ben Steele\
 Thomas Kaseca\
 Colin Jones\
 Connor Simms\
-David Garcia Grajales
+David Garcia
 
 
