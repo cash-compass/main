@@ -1,5 +1,7 @@
 // allows us to read and write files
 const fs = require('fs');
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./database.db');
 
 function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
