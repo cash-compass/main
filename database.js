@@ -11,6 +11,8 @@ db.serialize(() => {
         }
     });
 
+    db.run('PRAGMA foreign_keys = ON');
+
     // Create a new users table with the correct structure
     db.run(`CREATE TABLE users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,6 +29,23 @@ db.serialize(() => {
             console.error("Error creating table:", err.message);
         } else {
             console.log("Users table created successfully.");
+        }
+    });
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS transactions (
+            transaction_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            amount REAL,
+            description TEXT,
+            date TEXT,
+            FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+        )
+    `, (err) => {
+        if (err) {
+            console.error('Error creating transactions table:', err.message);
+        } else {
+            console.log('Transactions table created or already exists.');
         }
     });
 });

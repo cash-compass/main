@@ -59,4 +59,98 @@ function createUser(username, password, firstName, lastName, weeklyIncome, weekl
     }
   });
   // Close the database connection after operations are complete
-  process.on('exit', () => db.close());
+  const currentUser = {
+    first_name: '',
+    last_name: '',
+    weekly_income: 0,
+    weekly_expense: 0,
+    current_income: 0,
+    current_expense: 0,
+};
+
+function login(username, password) {
+    // Open a connection to the database
+    const db = new sqlite3.Database('./database.db', (err) => {
+        if (err) {
+            console.error('Error opening database:', err.message);
+            return;
+        }
+    });
+
+    // Query the database for the user with matching username and password
+    const query = `SELECT first_name, last_name, weekly_income, weekly_expense, current_income, current_expense 
+                   FROM users 
+                   WHERE username = ? AND password = ?`;
+
+    db.get(query, [username, password], (err, row) => {
+        if (err) {
+            console.error('Database error:', err.message);
+            return;
+        }
+
+        if (row) {
+            // User found, populate currentUser with user data
+            currentUser.first_name = row.first_name;
+            currentUser.last_name = row.last_name;
+            currentUser.weekly_income = row.weekly_income;
+            currentUser.weekly_expense = row.weekly_expense;
+            currentUser.current_income = row.current_income;
+            currentUser.current_expense = row.current_expense;
+
+            console.log('Login successful:', currentUser);
+        } else {
+            // No user found
+            console.log('User not found');
+        }
+
+        // Close the database connection
+        db.close((err) => {
+            if (err) {
+                console.error('Error closing database:', err.message);
+            }
+        });
+    });
+}
+  
+login('john_doe', 'password123');
+
+function saveUser(username, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
+  // Open a connection to the database
+  const db = new sqlite3.Database('./database.db', (err) => {
+      if (err) {
+          console.error('Error opening database:', err.message);
+          return;
+      }
+  });
+
+  // SQL query to update the user's financial data based on the username
+  const query = `UPDATE users 
+                 SET weekly_income = ?, weekly_expense = ?, current_income = ?, current_expense = ?
+                 WHERE username = ?`;
+
+  db.run(query, [weeklyIncome, weeklyExpense, currentIncome, currentExpense, username], function (err) {
+      if (err) {
+          console.error('Database error:', err.message);
+          return;
+      }
+
+      if (this.changes > 0) {
+          // Update was successful
+          console.log(`Success: User ${username} updated!`);
+      } else {
+          // No user with that username was found
+          console.log(`User ${username} not found.`);
+      }
+  });
+
+  // Close the database connection
+  db.close((err) => {
+      if (err) {
+          console.error('Error closing database:', err.message);
+      }
+  });
+}
+
+saveUser('john_doe', 1000, 500, 1200, 450);
+
+process.on('exit', () => db.close());
