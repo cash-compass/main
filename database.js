@@ -11,6 +11,14 @@ db.serialize(() => {
         }
     });
 
+    db.run(`DROP TABLE IF EXISTS transactions`, (err) => {
+        if (err) {
+            console.error("Error dropping transactions table:", err.message);
+        } else {
+            console.log("Dropped existing transactions table.");
+        }
+    });
+
     db.run('PRAGMA foreign_keys = ON');
 
     // Create a new users table with the correct structure
@@ -32,22 +40,21 @@ db.serialize(() => {
         }
     });
 
-    db.run(`
-        CREATE TABLE IF NOT EXISTS transactions (
-            transaction_id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            amount REAL,
-            description TEXT,
-            date TEXT,
-            FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-        )
-    `, (err) => {
-        if (err) {
-            console.error('Error creating transactions table:', err.message);
-        } else {
-            console.log('Transactions table created or already exists.');
-        }
-    });
+    db.run(`CREATE TABLE transactions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        date TEXT NOT NULL,
+        category TEXT NOT NULL,
+        description TEXT NOT NULL,
+        amount TEXT NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES users (id)
+        )`, (err) => {
+            if (err) {
+                console.error("Error creating transactions table:", err.message);
+            } else {
+                console.log("Transactions table created successfully.");
+            }
+        });
 });
 
 // Close the database connection
