@@ -1,2 +1,0 @@
-
-johndoe,password123,John,Doe,1000,500,5000,2500
