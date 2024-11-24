@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <script type="text/javascript" src="functions.js"></script>
     <header>
         <h1 id="h1">Cash Compass</h1>
         <p id="username_html">Current User: </p>
@@ -31,48 +32,36 @@
         </div>
     </header>
 
-    <main>
-        <section class="intro">
-            <p>Take control of your finances with CashCompass. Our AI-driven app simplifies money management by effortlessly tracking your daily expenses and categorizing them automatically.</p>
+    <main class="main-container">
+        <section class="user-info-section">
+            <h3>User Information</h3>
+            <p id="user-name">Name: Colin Jones</p>
+            <p id="user-balance">Balance: $2000</p>
         </section>
 
-        <section class="form-section">
-            <form id="dataForm">
-                <div class="form-group">
-                    <label for="percentage">Percentage:</label>
-                    <input type="number" id="percentage" min="0" max="100" required>
-                </div>
+        <section class="left-section">
+            <h2>Manage Finances</h2>
+            <div class="form-group">
+                <label for ="income">Income:</label>
+                <input type="number" id="left-income" placeholder="Enter Income" />
+            </div>
+            <button class="submitIncome-button" onclick="incomeButton()">Submit Income</button>
+            <div class="form-group">
+                <label for="expenses">Expenses:</label>
+                <input type="number" id="left-expenses" placeholder="Enter expenses" />
+            </div>
+            <button class="submitExpenses-button" onclick="expendituresButton()">Submit Expenses</button>
+        </section>
 
-                <div class="form-group">
-                    <label for="income">Income:</label>
-                    <input type="number" id="income" required>
-                </div>
-
-                <button class="submit-button" onclick="incomeButton()">Submit</button>
-
-                <div class="form-group">
-                    <label for="expense">Expense:</label>
-                    <input type="number" id="expense">
-                </div>
-
-                <button class="submit-button" onclick="expendituresButton()">Submit</button>
-
-                <div class="form-group">
-                    <label for="category">Categories:</label>
-                    <select name="category" id="category">
-                        <option value="dash">----</option>
-                        <option value="savings">Savings</option>
-                        <option value="leisure">Leisure</option>
-                        <option value="expenses">Expenses</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-            </form>
-
-            <canvas id="pieChart1" width="400" height="400"></canvas>
-            <canvas id="pieChart2" width="400" height="400"></canvas>
+        <section class="pie-chart-section">
+            <h3>Pie Chart</h3>
+            <div class="pie-chart-placeholder">
+                <p>Pie Chart Blank</p>
+            </div>
         </section>
     </main>
+
+    
     <script src="user.js"></script>
 </body>
 </html>

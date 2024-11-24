@@ -7,6 +7,7 @@ function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
 
 }
+
 // User constructor
 function user(first_name, last_name, weekly_income, weekly_expense, current_income, current_expense) {
     this.first_name = first_name;
@@ -103,10 +104,14 @@ process.on('exit', () => {
         }
     });
 });
+
+let expenses = [];
+let income = [];
+
 // Function used for the income button
 function incomeButton() {
     // creates a temp variable, that will store the user input into it
-    var temp = document.getElementById('income');
+    var temp = document.getElementById('left-income');
 
     // This if statement will test to see if the user input isn't empty and actually holds data
     // If true it will push he data to the income array
@@ -119,12 +124,19 @@ function incomeButton() {
     else {
         alert("Value Field is Empty, Please Input!");
     }
+
+    document.getElementById('left-income').value = '';
+    document.getElementById('income-label').textContent = 'Income:';
+}
+
+function addIncome(amont) {
+    console.log("Income added:", amount);
 }
 
 // Function used for the expenses button
 function expendituresButton() {
     // creates a temp variable, that will store the user input into it
-    var temp = document.getElementById('expense');
+    var temp = document.getElementById('left-expenses');
 
     // This if statement will test to see if the user input isn't empty and actually holds data
     // If true it will push he data to the expenses array
@@ -137,20 +149,11 @@ function expendituresButton() {
     else {
         alert("Value Field is Empty, Please Input!");
     }
+
+    document.getElementById('left-expenses').value = '';
+    document.getElementById('expenses-label').textContent = 'Expenses:';
 }
 
-// going to be used for saving the user data
-function saveButton() {
-
+function addExpense(amont) {
+    console.log("Expense added:", amount);
 }
-
-// used for taking all the data and calculate their budget
-function budgetCalc() {
-
-}
-
-//This function updates the user's name when the page loads.
-//This is how you have to wrtie anything that you want to happen right away.
-//window.onload = function() {
-//   document.getElementById('username_html').innerHTML = test_user.first_name + " " + test_user.last_name;
-//};
