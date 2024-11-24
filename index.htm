@@ -19,7 +19,6 @@
 </head>
 
 <body>
-    <script type="text/javascript" src="functions.js"></script>
     <header>
         <h1 id="h1">Cash Compass</h1>
         <p id="username_html">Current User: </p>
@@ -27,6 +26,8 @@
         <div class="login-button-container">
             <form action="login.htm">
                 <button type="submit" class="login-button">Login</button>
+            </form>
+            <form action="createUser.htm">
                 <button type="submit" class="createUser-button">Create User</button>
             </form>
         </div>
@@ -37,6 +38,9 @@
             <h3>User Information</h3>
             <p id="user-name">Name: Colin Jones</p>
             <p id="user-balance">Balance: $2000</p>
+            <a href="transactions.htm">
+                <button class="transactions-button">Transactions History</button>
+            </a>
         </section>
 
         <section class="left-section">
