@@ -93,8 +93,6 @@ function login() {
     });
 }
 
-login('ciddous', 'legocolin04');
-
 function saveUser(username, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
     const filePath = 'users.txt'
 
@@ -190,9 +188,9 @@ function expendituresButton() {
     // This if statement will test to see if the user input isn't empty and actually holds data
     // If true it will push he data to the expenses array
     // If false then it will send an alert to the user input a data
-    if (temp.value.trim() != ""){
-        expenses.push(parseFloat(temp.value.trim()));
-        addExpense(parseFloat(temp.value.trim()));
+    if (temp.trim() != ""){
+        expenses.push(parseFloat(temp.trim()));
+        addExpense(parseFloat(temp.trim()));
         temp.value = '';
         console.log("Expense added:", expenses);
     }
