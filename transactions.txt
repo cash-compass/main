@@ -1,24 +1,9 @@
-Transaction History
-
-Date       | Category   | Description           | Amount
----------------------------------------------------------
-2024-01-01 | Savings    | Monthly Savings       | +500.00
-2024-01-05 | Expenses   | Rent Payment          | -1,200.00
-2024-01-10 | Leisure    | Dining Out            | -75.00
-2024-01-15 | Other      | Gym Membership        | -50.00
-2024-01-20 | Expenses   | Groceries             | -200.00
-2024-02-01 | Savings    | Monthly Savings       | +500.00
-2024-02-05 | Expenses   | Utilities             | -150.00
-2024-02-10 | Leisure    | Movie Night           | -30.00
-2024-02-15 | Other      | Subscriptions         | -25.00
-2024-02-20 | Expenses   | Internet Bill         | -60.00
-2024-03-01 | Savings    | Monthly Savings       | +500.00
-2024-03-05 | Expenses   | Rent Payment          | -1,200.00
-2024-03-10 | Leisure    | Concert Tickets       | -120.00
-2024-03-15 | Other      | Donation              | -100.00
-2024-03-20 | Expenses   | Car Payment           | -300.00
-2024-04-01 | Savings    | Monthly Savings       | +500.00
-2024-04-05 | Expenses   | Utilities             | -150.00
-2024-04-10 | Leisure    | Weekend Trip          | -250.00
-2024-04-15 | Other      | Pet Expenses          | -80.00
-2024-04-20 | Expenses   | Groceries             | -220.00
+500, food
+300, miscellaneous
+200, bills
+300, leisure
+200, food
+1000, school
+50, gas
+100, bills
+200, miscellaneous
