@@ -255,77 +255,184 @@ canvas {
 /* Responsive design */
 @media screen and (max-width: 768px) {
   body {
-      padding: 0 10px;
+    padding: 0 10px;
   }
 
   form {
-      max-width: 100%;
+    max-width: 100%;
   }
 }
 
+/* Button to open the popup */
+#openPopup {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-       /* Button to open the popup */
-        #openPopup {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+/* Popup background */
+.trans_popup {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  z-index: 9999;
+}
 
-        /* Popup background */
-        .popup {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-            z-index: 9999;
-        }
+/* Popup content */
+.trans_popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
 
-        /* Popup content */
-        .popup-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 20px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-        }
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
 
-        /* Close button */
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #333;
-        }
+/* Transaction table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 
-        /* Transaction table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
 
-        table th, table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
+table th {
+  background-color: #007BFF;
+  color: white;
+}
 
-        table th {
-            background-color: #007BFF;
-            color: white;
-        }
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
 
-        table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+/* Popup container styling */
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+/* Popup content */
+.popup-content {
+  position: relative;
+  background-color: #fff;
+  margin: 15% auto; /* Center it */
+  padding: 20px;
+  border-radius: 8px;
+  width: 30%; /* Adjust width as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #555;
+}
+
+/* Popup background */
+.create-user-popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 9999;
+}
+
+/* Popup content */
+.create-user-popup-content {
+  position: fixed; /* Keeps the popup fixed in the viewport */
+  top: 50%; /* 50% from the top */
+  left: 50%; /* 50% from the left */
+  transform: translate(-50%, -50%); /* Centers the element */
+  background: #fff;
+  padding: 20px;
+  width: 90%; /* Adjust width as needed */
+  max-width: 600px; /* Set a maximum width */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+/* Close button */
+.create-user-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #555;
+}
+
+.create-user-popup-content .form-group {
+  margin-bottom: 15px;
+}
+
+.create-user-popup-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.create-user-popup-content input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.create-user-popup-content input:focus {
+  border-color: #05869d;
+  outline: none;
+}
+
+.create-user-popup-content .submit-button {
+  background-color: #05869d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.create-user-popup-content .submit-button:hover {
+  background-color: #45a049;
+}

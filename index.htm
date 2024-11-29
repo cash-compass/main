@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CashCompass</title>
 
-
-
     <!-- Link to external CSS -->
     <link rel="stylesheet" href="style.css">
 
     <!-- Favicon for modern design -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
+
     <!-- Google Fonts for modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -22,13 +20,34 @@
         <h1 id="h1">Cash Compass</h1>
         <p id="username_html">Current User: </p>
 
-        <div class="login-button-container">
-            <form action="login.htm">
-                <button type="submit" class="login-button">Login</button>
-            </form>
-            <form action="createUser.htm">
-                <button type="submit" class="createUser-button">Create User</button>
-            </form>
+        <!-- Trigger Button for Create User Popup -->
+        <button id="openCreateUserPopup" class="createUser-button">Create User</button>
+
+        <!-- Create User Popup -->
+        <div id="createUserPopup" class="create-user-popup">
+            <div class="create-user-popup-content">
+                <span class="create-user-close-btn">&times;</span>
+                <form id="create-user-form" action="#" method="POST">
+                    <h2>Create User</h2>
+                    <div class="form-group">
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name" name="first-name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" name="last-name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="new-username">Username:</label>
+                        <input type="text" id="new-username" name="new-username" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Password:</label>
+                        <input type="password" id="new-password" name="new-password" required />
+                    </div>
+                    <button type="submit" class="submit-button" onclick="createUser()">Create User</button>
+                </form>
+            </div>
         </div>
     </header>
 
@@ -37,40 +56,51 @@
             <h3>User Information</h3>
             <p id="user-name">Name: </p>
             <p id="user-balance">Balance: </p>
-                <button id="openPopup">View Transaction History</button>
-             <!-- Popup for Transaction History -->
-    <div id="popupForm" class="popup">
-        <div class="popup-content">
-            <span class="close" id="closePopup">&times;</span>
-            <h2>Transaction History</h2>
-            <table id="transactionTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Date</th>
-                        <th>Type</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Transactions will be dynamically inserted here -->
-                </tbody>
-            </table>
-        </div>
-    </div>
+            <button id="openPopup">View Transaction History</button>
+
+            <!-- Popup for Transaction History -->
+            <div id="popupForm" class="trans_popup">
+                <div class="trans_popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <h2>Transaction History</h2>
+                    <table id="transactionTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Transactions will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
 
         <section class="left-section">
             <h2>Manage Finances</h2>
             <div class="form-group">
-                <label for ="income">Income:</label>
+                <label for="income">Income:</label>
                 <input type="number" id="left-income" placeholder="Enter Income" />
             </div>
+            <div class="form-group">
+                <label for="income2">Type:</label>
+                <input type="string" id="type-income" placeholder="Enter type" />
+            </div>
             <button class="submitIncome-button" onclick="incomeButton()">Submit Income</button>
+            
             <div class="form-group">
                 <label for="expenses">Expenses:</label>
                 <input type="number" id="left-expenses" placeholder="Enter expenses" />
             </div>
+            <div class="form-group">
+                <label for="expenses2">Type:</label>
+                <input type="string" id="type-expenses" placeholder="Enter type" />
+            </div>
+
             <button class="submitExpenses-button" onclick="expendituresButton()">Submit Expenses</button>
         </section>
 
@@ -80,23 +110,30 @@
                 <p>Pie Chart Blank</p>
             </div>
         </section>
-
     </main>
-<h1 id="test">Login</h1>
-    <form id="login-form">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" required>
+
+    <h1 id="test">Login</h1>
+    <div id="login-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="button" onclick="login()">Login</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" required>
-        </div>
-        <button type="button" onclick="login()">Login</button>
-    </form>
+    </div>
+
+    <button id="open-popup-btn" onclick="openPopup()">Open Login</button>
 
     <!-- This links the JavaScript file -->
     <script type="text/javascript" src="functions.js"></script>
-
 </body>
 </html>
