@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CashCompass</title>
 
-	<!-- This links the JavaScript file -->
-	<script type="text/javascript" src="functions.js"></script>
+
 
     <!-- Link to external CSS -->
     <link rel="stylesheet" href="style.css">
@@ -36,11 +35,29 @@
     <main class="main-container">
         <section class="user-info-section">
             <h3>User Information</h3>
-            <p id="user-name">Name: Colin Jones</p>
-            <p id="user-balance">Balance: $2000</p>
-            <a href="transactions.htm">
-                <button class="transactions-button">Transactions History</button>
-            </a>
+            <p id="user-name">Name: </p>
+            <p id="user-balance">Balance: </p>
+                <button id="openPopup">View Transaction History</button>
+             <!-- Popup for Transaction History -->
+    <div id="popupForm" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2>Transaction History</h2>
+            <table id="transactionTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Transactions will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
         </section>
 
         <section class="left-section">
@@ -63,9 +80,23 @@
                 <p>Pie Chart Blank</p>
             </div>
         </section>
-    </main>
 
-    
-    <script src="user.js"></script>
+    </main>
+<h1 id="test">Login</h1>
+    <form id="login-form">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+        </div>
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <!-- This links the JavaScript file -->
+    <script type="text/javascript" src="functions.js"></script>
+
 </body>
 </html>
