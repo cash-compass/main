@@ -97,14 +97,15 @@ canvas {
 }
 
 .login-button-container {
-  position: absolute;
+  position: absolute; 
+  /*position: fixed; Testing position - Jinay */
   top: 10px;
   right: 10px;
 }
 
 .login-button {
   font-size: 18px;
-  padding: 10 px 20px;
+  padding: 10px 15px;
   background-color: #007BFF;
   color: white;
   border: none;
@@ -119,7 +120,7 @@ canvas {
 
 .createUser-button {
   font-size: 18px;
-  padding: 10 px 20px;
+  padding: 10px 15px;
   background-color: #007BFF;
   color: white;
   border: none;
