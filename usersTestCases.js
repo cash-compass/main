@@ -28,6 +28,28 @@ function user(username, password, first_name, last_name, weekly_income, weekly_e
 }
 
 currentUser = new user();
+// Simple cipher: Shift each character in the password by a certain value
+const shiftValue = 3; // Example shift value
+
+// Encrypt function: Shift each character in the password
+function encryptPassword(password) {
+    let encryptedPassword = '';
+    for (let i = 0; i < password.length; i++) {
+        const charCode = password.charCodeAt(i); // Get the character code of each character
+        encryptedPassword += String.fromCharCode(charCode + shiftValue); // Shift the character code
+    }
+    return encryptedPassword;
+}
+
+// Decrypt function: Reverse the shift to get the original password
+function decryptPassword(encryptedPassword) {
+    let decryptedPassword = '';
+    for (let i = 0; i < encryptedPassword.length; i++) {
+        const charCode = encryptedPassword.charCodeAt(i); // Get the character code of each character
+        decryptedPassword += String.fromCharCode(charCode - shiftValue); // Reverse the shift
+    }
+    return decryptedPassword;
+}
 
 // This function will create new users into the database
 // It take all the data inputted when creating a new user and add into the databse using the proper format
@@ -38,6 +60,7 @@ function createUser() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
 
+    var passwordEnc = encryptPassword(password);
     // Get userAmount or set it to 0 if it doesn't exist
     var userAmount = localStorage.getItem('userAmount'); 
     if (userAmount === null) {
@@ -45,6 +68,15 @@ function createUser() {
     } else {
         userAmount = parseInt(userAmount); // Ensure it's a number
     }
+    // Password complexity requirements
+const passwordMinLength = 8;  // Minimum length of 8 characters
+const passwordRegex = /^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&_]{8,}$/; // At least 1 number, 1 special character, and minimum length of 8 characters
+
+// Check if password meets the complexity requirements
+if (!passwordRegex.test(password)) {
+    alert("Password must be at least 8 characters long, contain at least one number, and one special character.");
+    return; // Stop execution
+}
 
     // Check if the username already exists
     for (let i = 0; i < userAmount; i++) {
@@ -59,7 +91,7 @@ function createUser() {
     // Create a new user object
     let newUser = {
         username: username,
-        password: password,
+        password: passwordEnc,
         first_name: firstName,
         last_name: lastName,
         current_income: 0,
@@ -76,52 +108,10 @@ function createUser() {
     alert("User " + newUser.username + " created!");
 }
 
-// This function will take the inputted username and password given by the user and then see if it is within the database
-
-
-function saveUser(username, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
-    const filePath = 'users.txt'
-
-    let fileContent;
-    try {
-        fileContent = fs.readFileSync(filePath, 'utf8');
-    } catch (err) {
-        console.error("Error reading file: ", err);
-        return;
-    }
-
-    const users = fileContent.split('\n').filter(Boolean);
-
-    const updatedUsers = users.map(user => {
-        const userFields = user.split(',');
-
-        if (userFields[0] === username) {
-            console.log(`Updating user: ${username}`);
-
-            userFields[4] = weeklyIncome;
-            userFields[5] = weeklyExpense;
-            userFields[6] = currentIncome;
-            userFields[7] = currentExpense;
-        }
-        return userFields.join(',');
-    });
-
-    const newFileContent = updatedUsers.join('\n');
-
-    fs.writeFile(filePath, newFileContent, (err) => {
-        if (err) {
-            console.error("Error writing to file:", err);
-        }
-        else {
-            console.log("Success: User updated!");
-        }
-    });
-}
 
 // This function will first call the saveUser function to make sure that all the user data is saved into the system
 // Once saved into the system it will result all the currentUser values to zero until another user logins
 function logout() {
-    saveUser();
     currentUser.first_name = 0;
     currentUser.last_name = 0;
     currentUser.weekly_income = 0;
@@ -147,6 +137,44 @@ function addExpense(trans) {
 var expenses = [];
 // Array used to keep track of the income inputted by the user
 var income = [];
+
+//Function for creating the totals for the pie chart.
+function createTotals() {
+    let expenseTotals = [0, 0, 0, 0, 0, 0]; // [Food, Bills, Gas, School, Leisure, Other]
+
+    // Loop through each expense object in currentUser.ex
+    for (let i = 0; i < currentUser.ex.length; i++) {
+        const expense = currentUser.ex[i];
+
+        // Check if the expense amount is negative (indicating an expense)
+        if (expense.amount < 0) {
+            // Increment the appropriate category based on the expense type
+            switch (expense.type) {
+                case 'Food':
+                    expenseTotals[0] += Math.abs(expense.amount); // Food is at index 0
+                    break;
+                case 'Bills':
+                    expenseTotals[1] += Math.abs(expense.amount); // Bills is at index 1
+                    break;
+                case 'Gas':
+                    expenseTotals[2] += Math.abs(expense.amount); // Gas is at index 2
+                    break;
+                case 'School':
+                    expenseTotals[3] += Math.abs(expense.amount); // School is at index 3
+                    break;
+                case 'Leisure':
+                    expenseTotals[4] += Math.abs(expense.amount); // Leisure is at index 4
+                    break;
+                case 'Other':
+                    expenseTotals[5] += Math.abs(expense.amount); // Other is at index 5
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    return expenseTotals;
+}
 // Function used for the income button
 function incomeButton() {
     var date = getDate();
@@ -168,6 +196,7 @@ function incomeButton() {
     else {
         alert("Value Field is Empty, Please Input!");
     }
+    loadInfo();
 }
 
 // Function used for the expenses button
@@ -191,6 +220,7 @@ function expendituresButton() {
     else {
         alert("Value Field is Empty, Please Input!");
     }
+    loadInfo();
 }
 
 
@@ -210,6 +240,7 @@ function login() {
 
         var storedUN = storedUser.username;
         var storedPW = storedUser.password;
+        storedPW = decryptPassword(storedPW);
         var storedID = storedUser.userID;
 
         // Check if the input username and password match any stored user
@@ -263,7 +294,8 @@ function loadInfo() {
     document.getElementById("username_html").innerHTML = "Current user: " + currentUser.username;
     document.getElementById("user-name").innerHTML = "Name: " + currentUser.first_name + " " + currentUser.last_name;
     document.getElementById("user-balance").innerHTML = "Balance: " + currentUser.current_income;
-
+    const totals = createTotals();
+    updateChartData(totals); // Call the function to update the chart
 }
 
 /// Creating the "View Transaction History" section
@@ -338,11 +370,43 @@ window.addEventListener('click', (event) => {
     }
 });
 
+const chartData = [30, 20, 15, 15, 10, 10];
+const chartLabels = ['Food', 'Bills', 'Gas', 'School', 'Leisure', 'Other'];
+const chartColors = ['#1E90FF', '#87CEFA', '#4682B4', '#5F9EA0', '#00CED1', '#6495ED'];
+
+// Wait for the DOM to load before accessing the canvas
+document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('myPieChart').getContext('2d');
+
+    // Initialize the pie chart
+    const myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                data: chartData,
+                backgroundColor: chartColors
+            }]
+        }
+    });
+
+    // Function to update the chart data
+    function updateChartData(newData) {
+        myPieChart.data.datasets[0].data = newData;
+        myPieChart.update(); // Update the chart to reflect the changes
+    }
+
+    // Attach the function to the window object for global access
+    window.updateChartData = updateChartData;
+
+});
+
 //Only runs if it is the first time the website is being run.
 //Pre-created users
+var pwUser0 = encryptPassword("legocolin04$")
 user0 = new user(
     "colin_jones",    // username
-    "123",            // password
+    pwUser0,            // password
     "Colin",          // first_name
     "Jones",          // last_name
     450,              // weekly_income
@@ -358,9 +422,10 @@ user0 = new user(
 );
 users.push(user0);
 
+var pwUser1 = encryptPassword("bencool6&")
 user1 = new user(
     "ben_tirado",
-    "123",
+    pwUser1,
     "Benjamin",
     "Tirado",
     600,
@@ -377,10 +442,10 @@ user1 = new user(
     );
 users.push(user1);
 
-
+var pwUser2 = encryptPassword("thomas60%")
 user2 = new user(
     "thomasK",
-    "123",
+    pwUser2,
     "Thomas",
     "Kaseca",
     700,
@@ -398,9 +463,10 @@ user2 = new user(
     );
 users.push(user2);
 
+var pwUser3 = encryptPassword("thomas60%")
 user3 = new user(
     "thomasK",
-    "123",
+    pwUser3,
     "Thomas",
     "Kaseca",
     700,
@@ -418,9 +484,10 @@ user3 = new user(
     );
 users.push(user3);
 
+var pwUser4 = encryptPassword("john420")
 user4 = new user(
     "johnS",
-    "123",
+    pwUser4,
     "John",
     "Swanson",
     700,
@@ -438,6 +505,7 @@ user4 = new user(
     );
 users.push(user4);
 
+var pwUser5 = encryptPassword("david23@")
 user5 = new user(
     "davidB",
     "123",
