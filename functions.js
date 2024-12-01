@@ -187,12 +187,24 @@ function expendituresButton() {
         document.getElementById("user-balance").innerHTML = "Balance: " + currentUser.current_income;
         localStorage.setItem('user_' + currentUser.userID, JSON.stringify(currentUser));
         alert("Expense added correctly!");
+        analyzeExpenseTrends();
     }
     else {
         alert("Value Field is Empty, Please Input!");
     }
 }
-
+// Function to check for trends 
+function analyzeExpenseTrends() {
+    const expensesByType = {};
+    currentUser.ex.forEach(expense => {
+      const type = expense.type;
+      if (!expensesByType[type]) {
+        expensesByType[type] = [];
+      }
+      expensesByType[type].push(expense);
+    });
+    console.log("ex");
+}
 
 function login() {
     // Takes the input username and password from the login page.
