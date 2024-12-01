@@ -1,4 +1,5 @@
 //Creating the array of users. MUY IMPORTANTE
+var users = [];
 
 function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
@@ -215,62 +216,13 @@ function expendituresButton() {
         document.getElementById("user-balance").innerHTML = "Balance: " + currentUser.current_income;
         localStorage.setItem('user_' + currentUser.userID, JSON.stringify(currentUser));
         alert("Expense added correctly!");
-        analyzeExpenseTrends();
     }
     else {
         alert("Value Field is Empty, Please Input!");
     }
     loadInfo();
 }
-// Function to check for trends 
-const exType = [0, 0, 0, 0, 0, 0,];
-function analyzeExpenseTrends() {
-    let FoodCount = 0;
-    let BillsCount = 0;
-    let GasCount = 0;
-    let SchoolCount = 0;
-    let LeisureCount = 0;
-    let OtherCount = 0;
-    for(let i = 0; i < currentUser.ex.length; i++){
-        if(currentUser.ex[i].type == "Food"){
-            FoodCount++;            
-        }
-        else if(currentUser.ex[i].type == "Bills"){
-            BillsCount++;            
-        }
-        else if(currentUser.ex[i].type == "Gas"){
-            GasCount++;            
-        }
-        else if(currentUser.ex[i].type == "School"){
-            SchoolCount++;            
-        }
-        else if(currentUser.ex[i].type == "Leisure"){
-            LeisureCount++;            
-        }
-        else if(currentUser.ex[i].type == "Other"){
-            OtherCount++;            
-        }
-    }
-    if(FoodCount > 1){
-        exType[0] = FoodCount;
-    }
-    if(BillsCount > 1){
-        exType[1] = BillsCount;
-    }
-    if(GasCount > 1){
-        exType[2] = GasCount;
-    }
-    if(SchoolCount > 1){
-        exType[3] = SchoolCount;
-    }
-    if(LeisureCount > 1){
-        exType[4] = LeisureCount;
-    }
-    if(OtherCount > 1){
-        exType[5] = OtherCount;
-    }
 
-}
 
 function login() {
     // Takes the input username and password from the login page.
@@ -342,12 +294,6 @@ function loadInfo() {
     document.getElementById("username_html").innerHTML = "Current user: " + currentUser.username;
     document.getElementById("user-name").innerHTML = "Name: " + currentUser.first_name + " " + currentUser.last_name;
     document.getElementById("user-balance").innerHTML = "Balance: " + currentUser.current_income;
-    document.getElementById("food-count").innerHTML = exType[0];
-    document.getElementById("bills-count").innerHTML = exType[1];
-    document.getElementById("gas-count").innerHTML = exType[2];
-    document.getElementById("school-count").innerHTML = exType[3];
-    document.getElementById("leisure-count").innerHTML = exType[4];
-    document.getElementById("other-count").innerHTML = exType[5];
     const totals = createTotals();
     updateChartData(totals); // Call the function to update the chart
 }
@@ -455,11 +401,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
- 
 //Only runs if it is the first time the website is being run.
 //Pre-created users
-var pwUser0 = encryptPassword("123");
+var pwUser0 = encryptPassword("legocolin04$")
 user0 = new user(
     "colin_jones",    // username
     pwUser0,            // password
@@ -470,16 +414,18 @@ user0 = new user(
     100,                // current_income
     0,                // current_expense
     [                 // expenses array
-                { num: 1, date: "2024-11-01", type: "Food", amount: -50 },
-                { num: 2, date: "2024-11-02", type: "Gas", amount: -30 },
-                { num: 3, date: "2024-11-03", type: "Bills", amount: -800 },
-                { num: 4, date: "2024-11-04", type: "Bills", amount: -100 },
-                { num: 5, date: "2024-11-05", type: "Leisure", amount: -25 }    ]
+                { num: 1, date: "2024-11-01", type: "Groceries", amount: 50 },
+                { num: 2, date: "2024-11-02", type: "Gas", amount: 30 },
+                { num: 3, date: "2024-11-03", type: "Rent", amount: 800 },
+                { num: 4, date: "2024-11-04", type: "Utilities", amount: 100 },
+                { num: 5, date: "2024-11-05", type: "Entertainment", amount: 25 }    ]
 );
+users.push(user0);
 
+var pwUser1 = encryptPassword("bencool6&")
 user1 = new user(
     "ben_tirado",
-    pwUser0,
+    pwUser1,
     "Benjamin",
     "Tirado",
     600,
@@ -487,17 +433,19 @@ user1 = new user(
     200,
     75,
     [
-        { num: 1, date: "2024-11-01", type: "Food", amount: -60 },
-        { num: 2, date: "2024-11-02", type: "Gas", amount: -40 },
-        { num: 3, date: "2024-11-03", type: "Bills", amount: -900 },
-        { num: 4, date: "2024-11-04", type: "Leisure", amount: -15 },
-        { num: 5, date: "2024-11-05", type: "Leisure", amount: -120 }
+        { num: 1, date: "2024-11-01", type: "Groceries", amount: 60 },
+        { num: 2, date: "2024-11-02", type: "Gas", amount: 40 },
+        { num: 3, date: "2024-11-03", type: "Rent", amount: 900 },
+        { num: 4, date: "2024-11-04", type: "Subscriptions", amount: 15 },
+        { num: 5, date: "2024-11-05", type: "Shopping", amount: 120 }
     ]
     );
+users.push(user1);
 
+var pwUser2 = encryptPassword("thomas60%")
 user2 = new user(
     "thomasK",
-    pwUser0,
+    pwUser2,
     "Thomas",
     "Kaseca",
     700,
@@ -505,14 +453,78 @@ user2 = new user(
     300,
     100,
     [
-        { num: 1, date: "2024-11-01", type: "Food", amount: -70 },
-        { num: 2, date: "2024-11-02", type: "Gas", amount: -50 },
-        { num: 3, date: "2024-11-03", type: "Bills", amount: -950 },
-        { num: 4, date: "2024-11-04", type: "Bills", amount: -120 },
-        { num: 5, date: "2024-11-05", type: "Food", amount: -80 }
+        { num: 1, date: "2024-11-01", type: "Groceries", amount: 70 },
+        { num: 2, date: "2024-11-02", type: "Gas", amount: 50 },
+        { num: 3, date: "2024-11-03", type: "Rent", amount: 950 },
+        { num: 4, date: "2024-11-04", type: "Utilities", amount: 120 },
+        { num: 5, date: "2024-11-05", type: "Dining Out", amount: 80 }
     ]
 
     );
+users.push(user2);
+
+var pwUser3 = encryptPassword("thomas60%")
+user3 = new user(
+    "thomasK",
+    pwUser3,
+    "Thomas",
+    "Kaseca",
+    700,
+    300,
+    300,
+    100,
+    [
+        { num: 1, date: "2024-11-01", type: "Groceries", amount: 70 },
+        { num: 2, date: "2024-11-02", type: "Gas", amount: 50 },
+        { num: 3, date: "2024-11-03", type: "Rent", amount: 950 },
+        { num: 4, date: "2024-11-04", type: "Utilities", amount: 120 },
+        { num: 5, date: "2024-11-05", type: "Dining Out", amount: 80 }
+    ]
+
+    );
+users.push(user3);
+
+var pwUser4 = encryptPassword("john420")
+user4 = new user(
+    "johnS",
+    pwUser4,
+    "John",
+    "Swanson",
+    700,
+    300,
+    300,
+    100,
+    [
+        { num: 1, date: "2024-11-01", type: "Groceries", amount: 70 },
+        { num: 2, date: "2024-11-02", type: "Gas", amount: 50 },
+        { num: 3, date: "2024-11-03", type: "Rent", amount: 950 },
+        { num: 4, date: "2024-11-04", type: "Utilities", amount: 120 },
+        { num: 5, date: "2024-11-05", type: "Dining Out", amount: 80 }
+    ]
+
+    );
+users.push(user4);
+
+var pwUser5 = encryptPassword("david23@")
+user5 = new user(
+    "davidB",
+    "123",
+    "David",
+    "Ben",
+    -700,
+    -300,
+    -300,
+    -100,
+    [
+        { num: 1, date: "2024-11-01", type: "Groceries", amount: 70 },
+        { num: 2, date: "2024-11-02", type: "Gas", amount: 50 },
+        { num: 3, date: "2024-11-03", type: "Rent", amount: 950 },
+        { num: 4, date: "2024-11-04", type: "Utilities", amount: 120 },
+        { num: 5, date: "2024-11-05", type: "Dining Out", amount: 80 }
+    ]
+
+    );
+users.push(user5);
 
 //This section is created to ensure that the user information does not reset.
 //It does this by setting the local storage variable 'cached' to 1 once information has been loaded for the first time.
@@ -522,8 +534,12 @@ if(cached != 1) {
 localStorage.setItem('user_' + user0.userID, JSON.stringify(user0));
 localStorage.setItem('user_' + user1.userID, JSON.stringify(user1));
 localStorage.setItem('user_' + user2.userID, JSON.stringify(user2));
+localStorage.setItem('user_' + user2.userID, JSON.stringify(user3));
+localStorage.setItem('user_' + user2.userID, JSON.stringify(user4));
+localStorage.setItem('user_' + user2.userID, JSON.stringify(user5));
 localStorage.setItem('userAmount', 3);
 
 }
 localStorage.setItem('cached', 1);
+
 
