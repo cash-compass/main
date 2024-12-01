@@ -1,5 +1,4 @@
 //Creating the array of users. MUY IMPORTANTE
-var users = [];
 
 function changeColor() {
     document.getElementById("my-div").style.backgroundColor = "#FDF305";
@@ -422,7 +421,6 @@ user0 = new user(
                 { num: 4, date: "2024-11-04", type: "Bills", amount: -100 },
                 { num: 5, date: "2024-11-05", type: "Leisure", amount: -25 }    ]
 );
-users.push(user0);
 
 user1 = new user(
     "ben_tirado",
@@ -441,8 +439,6 @@ user1 = new user(
         { num: 5, date: "2024-11-05", type: "Leisure", amount: -120 }
     ]
     );
-users.push(user1);
-
 
 user2 = new user(
     "thomasK",
@@ -462,7 +458,6 @@ user2 = new user(
     ]
 
     );
-users.push(user2);
 
 //This section is created to ensure that the user information does not reset.
 //It does this by setting the local storage variable 'cached' to 1 once information has been loaded for the first time.
