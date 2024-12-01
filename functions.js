@@ -269,7 +269,12 @@ function analyzeExpenseTrends() {
     if(OtherCount > 1){
         exType[5] = OtherCount;
     }
-
+    document.getElementById("food-count").innerHTML = exType[0];
+    document.getElementById("bills-count").innerHTML = exType[1];
+    document.getElementById("gas-count").innerHTML = exType[2];
+    document.getElementById("school-count").innerHTML = exType[3];
+    document.getElementById("leisure-count").innerHTML = exType[4];
+    document.getElementById("other-count").innerHTML = exType[5];s
 }
 
 function login() {
@@ -316,7 +321,9 @@ function getUserID() {
 
 //Function runs on page load to update the text box that says "Current user: " to the currently logged in user.
 window.onload = function() {
+
     loadInfo();
+
 };
 
 //Function gets the current date and returns it in the correct format
@@ -342,14 +349,11 @@ function loadInfo() {
     document.getElementById("username_html").innerHTML = "Current user: " + currentUser.username;
     document.getElementById("user-name").innerHTML = "Name: " + currentUser.first_name + " " + currentUser.last_name;
     document.getElementById("user-balance").innerHTML = "Balance: " + currentUser.current_income;
-    document.getElementById("food-count").innerHTML = exType[0];
-    document.getElementById("bills-count").innerHTML = exType[1];
-    document.getElementById("gas-count").innerHTML = exType[2];
-    document.getElementById("school-count").innerHTML = exType[3];
-    document.getElementById("leisure-count").innerHTML = exType[4];
-    document.getElementById("other-count").innerHTML = exType[5];
+  
     const totals = createTotals();
     updateChartData(totals); // Call the function to update the chart
+    analyzeExpenseTrends();
+
 }
 
 /// Creating the "View Transaction History" section
