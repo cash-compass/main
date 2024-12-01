@@ -426,7 +426,7 @@ users.push(user0);
 
 user1 = new user(
     "ben_tirado",
-    "123",
+    pwUser0,
     "Benjamin",
     "Tirado",
     600,
@@ -446,7 +446,7 @@ users.push(user1);
 
 user2 = new user(
     "thomasK",
-    "123",
+    pwUser0,
     "Thomas",
     "Kaseca",
     700,
