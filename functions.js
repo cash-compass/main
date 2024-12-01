@@ -45,6 +45,15 @@ function createUser() {
     } else {
         userAmount = parseInt(userAmount); // Ensure it's a number
     }
+    // Password complexity requirements
+const passwordMinLength = 8;  // Minimum length of 8 characters
+const passwordRegex = /^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&_]{8,}$/; // At least 1 number, 1 special character, and minimum length of 8 characters
+
+// Check if password meets the complexity requirements
+if (!passwordRegex.test(password)) {
+    alert("Password must be at least 8 characters long, contain at least one number, and one special character.");
+    return; // Stop execution
+}
 
     // Check if the username already exists
     for (let i = 0; i < userAmount; i++) {
