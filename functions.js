@@ -28,6 +28,28 @@ function user(username, password, first_name, last_name, weekly_income, weekly_e
 }
 
 currentUser = new user();
+// Simple cipher: Shift each character in the password by a certain value
+const shiftValue = 3; // Example shift value
+
+// Encrypt function: Shift each character in the password
+function encryptPassword(password) {
+    let encryptedPassword = '';
+    for (let i = 0; i < password.length; i++) {
+        const charCode = password.charCodeAt(i); // Get the character code of each character
+        encryptedPassword += String.fromCharCode(charCode + shiftValue); // Shift the character code
+    }
+    return encryptedPassword;
+}
+
+// Decrypt function: Reverse the shift to get the original password
+function decryptPassword(encryptedPassword) {
+    let decryptedPassword = '';
+    for (let i = 0; i < encryptedPassword.length; i++) {
+        const charCode = encryptedPassword.charCodeAt(i); // Get the character code of each character
+        decryptedPassword += String.fromCharCode(charCode - shiftValue); // Reverse the shift
+    }
+    return decryptedPassword;
+}
 
 // This function will create new users into the database
 // It take all the data inputted when creating a new user and add into the databse using the proper format
@@ -38,6 +60,7 @@ function createUser() {
     const firstName = document.getElementById('first-name').value;
     const lastName = document.getElementById('last-name').value;
 
+    var passwordEnc = encryptPassword(password);
     // Get userAmount or set it to 0 if it doesn't exist
     var userAmount = localStorage.getItem('userAmount'); 
     if (userAmount === null) {
@@ -68,7 +91,7 @@ if (!passwordRegex.test(password)) {
     // Create a new user object
     let newUser = {
         username: username,
-        password: password,
+        password: passwordEnc,
         first_name: firstName,
         last_name: lastName,
         current_income: 0,
@@ -217,6 +240,7 @@ function login() {
 
         var storedUN = storedUser.username;
         var storedPW = storedUser.password;
+        storedPW = decryptPassword(storedPW);
         var storedID = storedUser.userID;
 
         // Check if the input username and password match any stored user
@@ -381,9 +405,10 @@ document.addEventListener('DOMContentLoaded', () => {
  
 //Only runs if it is the first time the website is being run.
 //Pre-created users
+var pwUser0 = encryptPassword("123");
 user0 = new user(
     "colin_jones",    // username
-    "123",            // password
+    pwUser0,            // password
     "Colin",          // first_name
     "Jones",          // last_name
     450,              // weekly_income
@@ -451,5 +476,4 @@ localStorage.setItem('userAmount', 3);
 
 }
 localStorage.setItem('cached', 1);
-
 
