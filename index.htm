@@ -18,7 +18,7 @@
 <body>
     <header>
         <h1 id="h1">Cash Compass</h1>
-        <p id="username_html">Current User: </p>
+        <p id="username_html" style="font-size: 17px; color: #05363e">Current User: </p>
 
         <!-- Trigger Button for Create User Popup -->
         <button id="openCreateUserPopup" class="createUser-button">Create User</button>
@@ -56,7 +56,7 @@
             <h3>User Information</h3>
             <p id="user-name">Name: </p>
             <p id="user-balance">Balance: </p>
-            <button id="openPopup">View Transaction History</button>
+            <button id="openPopup" class="createUser-button">View Transaction History</button>
 
             <!-- Popup for Transaction History -->
             <div id="popupForm" class="trans_popup">
@@ -126,12 +126,12 @@
                     <label for="password">Password:</label>
                     <input type="password" id="password" required>
                 </div>
-                <button type="button" onclick="login()">Login</button>
+                <button type="button" class="login-button" onclick="login()">Login</button>
             </form>
         </div>
     </div>
     
-    <button id="open-popup-btn" class="login-button" onclick="openPopup()">Open Login</button> <!-- Changed button id to button type, added class-->
+    <button id="open-popup-btn" class="login-button" onclick="openPopup()">Open Login</button>
 
     <!-- This links the JavaScript file -->
     <script type="text/javascript" src="functions.js"></script>
