@@ -24,8 +24,6 @@ CashCompass offers a range of features to enhance users' financial experience, a
 Income and Transactions Tracking:
 Users can input their daily income and expenses through dedicated buttons. To help users understand their financial flow, the tool provides category options, enabling them to track where their money is coming from and where it’s being spent.
 
-
-
 User Creation and Login System:
 To securely store user data, CashCompass includes a robust user profile system. New users can create profiles to save their financial information for future reference. Additionally, the system employs strong password encryption to ensure that only authorized users can access their accounts.
 
@@ -36,6 +34,8 @@ Pie Chart Visualization:
 To further assist users in understanding their spending patterns, the tool includes a pie chart feature. This chart provides a detailed breakdown of transactions by category, illustrating how much of their income is allocated to each category.
 
 ## Testing and Running
+
+Once you have the website running to start testing and getting it work you first need to either create a user for yourself or login to a preexisting user, once you do that it should load in previous information or give you a start balance of 0. From their you able to start adding income and expenses to see both balance and transactions change, the pie chart will also begin updating as well. Once this all begins to work the project should be fully working on your end. If not you might have had an issue either login or creating a new user for yourself, if the transactions are going through then you either don't have the income to add them or your information is wrong, and the pie chart will not appear properly until you start logging transactions.
 
 ## Contributors
 
