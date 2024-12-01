@@ -76,52 +76,10 @@ function createUser() {
     alert("User " + newUser.username + " created!");
 }
 
-// This function will take the inputted username and password given by the user and then see if it is within the database
-
-
-function saveUser(username, weeklyIncome, weeklyExpense, currentIncome, currentExpense) {
-    const filePath = 'users.txt'
-
-    let fileContent;
-    try {
-        fileContent = fs.readFileSync(filePath, 'utf8');
-    } catch (err) {
-        console.error("Error reading file: ", err);
-        return;
-    }
-
-    const users = fileContent.split('\n').filter(Boolean);
-
-    const updatedUsers = users.map(user => {
-        const userFields = user.split(',');
-
-        if (userFields[0] === username) {
-            console.log(`Updating user: ${username}`);
-
-            userFields[4] = weeklyIncome;
-            userFields[5] = weeklyExpense;
-            userFields[6] = currentIncome;
-            userFields[7] = currentExpense;
-        }
-        return userFields.join(',');
-    });
-
-    const newFileContent = updatedUsers.join('\n');
-
-    fs.writeFile(filePath, newFileContent, (err) => {
-        if (err) {
-            console.error("Error writing to file:", err);
-        }
-        else {
-            console.log("Success: User updated!");
-        }
-    });
-}
 
 // This function will first call the saveUser function to make sure that all the user data is saved into the system
 // Once saved into the system it will result all the currentUser values to zero until another user logins
 function logout() {
-    saveUser();
     currentUser.first_name = 0;
     currentUser.last_name = 0;
     currentUser.weekly_income = 0;
@@ -147,6 +105,44 @@ function addExpense(trans) {
 var expenses = [];
 // Array used to keep track of the income inputted by the user
 var income = [];
+
+//Function for creating the totals for the pie chart.
+function createTotals() {
+    let expenseTotals = [0, 0, 0, 0, 0, 0]; // [Food, Bills, Gas, School, Leisure, Other]
+
+    // Loop through each expense object in currentUser.ex
+    for (let i = 0; i < currentUser.ex.length; i++) {
+        const expense = currentUser.ex[i];
+
+        // Check if the expense amount is negative (indicating an expense)
+        if (expense.amount < 0) {
+            // Increment the appropriate category based on the expense type
+            switch (expense.type) {
+                case 'Food':
+                    expenseTotals[0] += Math.abs(expense.amount); // Food is at index 0
+                    break;
+                case 'Bills':
+                    expenseTotals[1] += Math.abs(expense.amount); // Bills is at index 1
+                    break;
+                case 'Gas':
+                    expenseTotals[2] += Math.abs(expense.amount); // Gas is at index 2
+                    break;
+                case 'School':
+                    expenseTotals[3] += Math.abs(expense.amount); // School is at index 3
+                    break;
+                case 'Leisure':
+                    expenseTotals[4] += Math.abs(expense.amount); // Leisure is at index 4
+                    break;
+                case 'Other':
+                    expenseTotals[5] += Math.abs(expense.amount); // Other is at index 5
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    return expenseTotals;
+}
 // Function used for the income button
 function incomeButton() {
     var date = getDate();
@@ -168,6 +164,7 @@ function incomeButton() {
     else {
         alert("Value Field is Empty, Please Input!");
     }
+    loadInfo();
 }
 
 // Function used for the expenses button
@@ -192,6 +189,7 @@ function expendituresButton() {
     else {
         alert("Value Field is Empty, Please Input!");
     }
+    loadInfo();
 }
 // Function to check for trends 
 function analyzeExpenseTrends() {
@@ -275,7 +273,8 @@ function loadInfo() {
     document.getElementById("username_html").innerHTML = "Current user: " + currentUser.username;
     document.getElementById("user-name").innerHTML = "Name: " + currentUser.first_name + " " + currentUser.last_name;
     document.getElementById("user-balance").innerHTML = "Balance: " + currentUser.current_income;
-
+    const totals = createTotals();
+    updateChartData(totals); // Call the function to update the chart
 }
 
 /// Creating the "View Transaction History" section
@@ -350,6 +349,39 @@ window.addEventListener('click', (event) => {
     }
 });
 
+const chartData = [30, 20, 15, 15, 10, 10];
+const chartLabels = ['Food', 'Bills', 'Gas', 'School', 'Leisure', 'Other'];
+const chartColors = ['#1E90FF', '#87CEFA', '#4682B4', '#5F9EA0', '#00CED1', '#6495ED'];
+
+// Wait for the DOM to load before accessing the canvas
+document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('myPieChart').getContext('2d');
+
+    // Initialize the pie chart
+    const myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                data: chartData,
+                backgroundColor: chartColors
+            }]
+        }
+    });
+
+    // Function to update the chart data
+    function updateChartData(newData) {
+        myPieChart.data.datasets[0].data = newData;
+        myPieChart.update(); // Update the chart to reflect the changes
+    }
+
+    // Attach the function to the window object for global access
+    window.updateChartData = updateChartData;
+
+});
+
+
+ 
 //Only runs if it is the first time the website is being run.
 //Pre-created users
 user0 = new user(
@@ -362,11 +394,11 @@ user0 = new user(
     100,                // current_income
     0,                // current_expense
     [                 // expenses array
-                { num: 1, date: "2024-11-01", type: "Groceries", amount: 50 },
-                { num: 2, date: "2024-11-02", type: "Gas", amount: 30 },
-                { num: 3, date: "2024-11-03", type: "Rent", amount: 800 },
-                { num: 4, date: "2024-11-04", type: "Utilities", amount: 100 },
-                { num: 5, date: "2024-11-05", type: "Entertainment", amount: 25 }    ]
+                { num: 1, date: "2024-11-01", type: "Food", amount: -50 },
+                { num: 2, date: "2024-11-02", type: "Gas", amount: -30 },
+                { num: 3, date: "2024-11-03", type: "Bills", amount: -800 },
+                { num: 4, date: "2024-11-04", type: "Bills", amount: -100 },
+                { num: 5, date: "2024-11-05", type: "Leisure", amount: -25 }    ]
 );
 users.push(user0);
 
@@ -380,11 +412,11 @@ user1 = new user(
     200,
     75,
     [
-        { num: 1, date: "2024-11-01", type: "Groceries", amount: 60 },
-        { num: 2, date: "2024-11-02", type: "Gas", amount: 40 },
-        { num: 3, date: "2024-11-03", type: "Rent", amount: 900 },
-        { num: 4, date: "2024-11-04", type: "Subscriptions", amount: 15 },
-        { num: 5, date: "2024-11-05", type: "Shopping", amount: 120 }
+        { num: 1, date: "2024-11-01", type: "Food", amount: -60 },
+        { num: 2, date: "2024-11-02", type: "Gas", amount: -40 },
+        { num: 3, date: "2024-11-03", type: "Bills", amount: -900 },
+        { num: 4, date: "2024-11-04", type: "Leisure", amount: -15 },
+        { num: 5, date: "2024-11-05", type: "Leisure", amount: -120 }
     ]
     );
 users.push(user1);
@@ -400,11 +432,11 @@ user2 = new user(
     300,
     100,
     [
-        { num: 1, date: "2024-11-01", type: "Groceries", amount: 70 },
-        { num: 2, date: "2024-11-02", type: "Gas", amount: 50 },
-        { num: 3, date: "2024-11-03", type: "Rent", amount: 950 },
-        { num: 4, date: "2024-11-04", type: "Utilities", amount: 120 },
-        { num: 5, date: "2024-11-05", type: "Dining Out", amount: 80 }
+        { num: 1, date: "2024-11-01", type: "Food", amount: -70 },
+        { num: 2, date: "2024-11-02", type: "Gas", amount: -50 },
+        { num: 3, date: "2024-11-03", type: "Bills", amount: -950 },
+        { num: 4, date: "2024-11-04", type: "Bills", amount: -120 },
+        { num: 5, date: "2024-11-05", type: "Food", amount: -80 }
     ]
 
     );
