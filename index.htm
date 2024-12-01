@@ -11,6 +11,8 @@
     <!-- Favicon for modern design -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Google Fonts for modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -106,9 +108,7 @@
 
         <section class="pie-chart-section">
             <h3>Pie Chart</h3>
-            <div class="pie-chart-placeholder">
-                <p>Pie Chart Blank</p>
-            </div>
+            <canvas id="myPieChart" width="400" height="400"></canvas>
         </section>
     </main>
 
@@ -135,5 +135,6 @@
 
     <!-- This links the JavaScript file -->
     <script type="text/javascript" src="functions.js"></script>
+    <script type="text/javascript" src="piechart.js"></script>
 </body>
 </html>
