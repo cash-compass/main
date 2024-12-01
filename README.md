@@ -19,6 +19,22 @@ Troubleshooting:
 If the program does not work as expected, double-check that you have the most up-to-date repository downloaded. An outdated repository may lead to errors.
 ## Features
 
+CashCompass offers a range of features to enhance users' financial experience, as outlined below:
+
+Income and Transactions Tracking:
+Users can input their daily income and expenses through dedicated buttons. To help users understand their financial flow, the tool provides category options, enabling them to track where their money is coming from and where it’s being spent.
+
+
+
+User Creation and Login System:
+To securely store user data, CashCompass includes a robust user profile system. New users can create profiles to save their financial information for future reference. Additionally, the system employs strong password encryption to ensure that only authorized users can access their accounts.
+
+Transaction History:
+After saving their data, users can review their current balance and past transactions. This feature provides a clear view of spending habits, showing how much they’ve spent and where the money has gone.
+
+Pie Chart Visualization:
+To further assist users in understanding their spending patterns, the tool includes a pie chart feature. This chart provides a detailed breakdown of transactions by category, illustrating how much of their income is allocated to each category.
+
 ## Testing and Running
 
 ## Contributors
