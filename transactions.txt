@@ -1,9 +1,0 @@
-500, food
-300, miscellaneous
-200, bills
-300, leisure
-200, food
-1000, school
-50, gas
-100, bills
-200, miscellaneous
