@@ -192,16 +192,53 @@ function expendituresButton() {
     loadInfo();
 }
 // Function to check for trends 
+const exType = [0, 0, 0, 0, 0, 0,];
 function analyzeExpenseTrends() {
-    const expensesByType = {};
-    currentUser.ex.forEach(expense => {
-      const type = expense.type;
-      if (!expensesByType[type]) {
-        expensesByType[type] = [];
-      }
-      expensesByType[type].push(expense);
-    });
-    console.log("ex");
+    let FoodCount = 0;
+    let BillsCount = 0;
+    let GasCount = 0;
+    let SchoolCount = 0;
+    let LeisureCount = 0;
+    let OtherCount = 0;
+    for(let i = 0; i < currentUser.ex.length; i++){
+        if(currentUser.ex[i].type == "Food"){
+            FoodCount++;            
+        }
+        else if(currentUser.ex[i].type == "Bills"){
+            BillsCount++;            
+        }
+        else if(currentUser.ex[i].type == "Gas"){
+            GasCount++;            
+        }
+        else if(currentUser.ex[i].type == "School"){
+            SchoolCount++;            
+        }
+        else if(currentUser.ex[i].type == "Leisure"){
+            LeisureCount++;            
+        }
+        else if(currentUser.ex[i].type == "Other"){
+            OtherCount++;            
+        }
+    }
+    if(FoodCount > 1){
+        exType[0] = FoodCount;
+    }
+    if(BillsCount > 1){
+        exType[1] = BillsCount;
+    }
+    if(GasCount > 1){
+        exType[2] = GasCount;
+    }
+    if(SchoolCount > 1){
+        exType[3] = SchoolCount;
+    }
+    if(LeisureCount > 1){
+        exType[4] = LeisureCount;
+    }
+    if(OtherCount > 1){
+        exType[5] = OtherCount;
+    }
+
 }
 
 function login() {
@@ -273,6 +310,12 @@ function loadInfo() {
     document.getElementById("username_html").innerHTML = "Current user: " + currentUser.username;
     document.getElementById("user-name").innerHTML = "Name: " + currentUser.first_name + " " + currentUser.last_name;
     document.getElementById("user-balance").innerHTML = "Balance: " + currentUser.current_income;
+    document.getElementById("food-count").innerHTML = exType[0];
+    document.getElementById("bills-count").innerHTML = exType[1];
+    document.getElementById("gas-count").innerHTML = exType[2];
+    document.getElementById("school-count").innerHTML = exType[3];
+    document.getElementById("leisure-count").innerHTML = exType[4];
+    document.getElementById("other-count").innerHTML = exType[5];
     const totals = createTotals();
     updateChartData(totals); // Call the function to update the chart
 }
