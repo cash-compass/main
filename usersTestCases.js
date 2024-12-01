@@ -398,7 +398,7 @@ user2 = new user(
     );
 users.push(user2);
 
-user2 = new user(
+user3 = new user(
     "thomasK",
     "123",
     "Thomas",
@@ -416,9 +416,9 @@ user2 = new user(
     ]
 
     );
-users.push(user2);
+users.push(user3);
 
-user2 = new user(
+user4 = new user(
     "johnS",
     "123",
     "John",
@@ -436,9 +436,9 @@ user2 = new user(
     ]
 
     );
-users.push(user2);
+users.push(user4);
 
-user2 = new user(
+user5 = new user(
     "davidB",
     "123",
     "David",
@@ -456,7 +456,7 @@ user2 = new user(
     ]
 
     );
-users.push(user2);
+users.push(user5);
 
 //This section is created to ensure that the user information does not reset.
 //It does this by setting the local storage variable 'cached' to 1 once information has been loaded for the first time.
@@ -466,6 +466,9 @@ if(cached != 1) {
 localStorage.setItem('user_' + user0.userID, JSON.stringify(user0));
 localStorage.setItem('user_' + user1.userID, JSON.stringify(user1));
 localStorage.setItem('user_' + user2.userID, JSON.stringify(user2));
+localStorage.setItem('user_' + user2.userID, JSON.stringify(user3));
+localStorage.setItem('user_' + user2.userID, JSON.stringify(user4));
+localStorage.setItem('user_' + user2.userID, JSON.stringify(user5));
 localStorage.setItem('userAmount', 3);
 
 }
