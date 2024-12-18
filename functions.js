@@ -531,3 +531,5 @@ localStorage.setItem('userAmount', 3);
 }
 localStorage.setItem('cached', 1);
 
+//localStorage.clear();
+
